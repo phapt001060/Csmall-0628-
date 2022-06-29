@@ -1,10 +1,6 @@
-package cn.tedu.csmall.server;
+package cn.tedu.csmall.server.repo;
 
-import cn.tedu.csmall.server.controller.AlbumController;
-import cn.tedu.csmall.server.controller.BrandController;
-import cn.tedu.csmall.server.controller.CategoryController;
-import cn.tedu.csmall.server.controller.PictureController;
-import cn.tedu.csmall.server.repo.IBrandRepository;
+import cn.tedu.csmall.server.controller.*;
 import cn.tedu.csmall.server.repo.impl.BrandRepositoryImpl2;
 import cn.tedu.csmall.server.repo.impl.CategoryRepositoryImpl;
 import cn.tedu.csmall.server.service.BrandServiceImpl;
@@ -120,5 +116,33 @@ class Jsd2203CsmallServerApplicationTests {
     @Test
     public void testAlbumControllerAutowired(){
         System.out.println(albumController.albumService);
+    }
+
+    @Autowired
+    IAttributeRepository attributeRepository;
+    @Test
+    public void testAttributeRepository(){
+        System.out.println(attributeRepository.iAlbumService);
+    }
+
+    @Autowired
+    IAttributeTemplateRepository attributeTemplateRepository;
+    @Test
+    public void testAttributeTemplateRepository(){
+        System.out.println(attributeTemplateRepository.iAttributeTemplateService);
+    }
+
+    @Autowired
+    SpuController spuController;
+    @Test
+    public void testISpuController(){
+        System.out.println(spuController.spuService);
+    }
+
+    @Autowired
+    SkuController skuController;
+    @Test
+    public void testSkuController(){
+        System.out.println(skuController.iSpuService);
     }
 }

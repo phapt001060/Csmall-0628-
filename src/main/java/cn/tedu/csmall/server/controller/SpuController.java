@@ -1,18 +1,15 @@
 package cn.tedu.csmall.server.controller;
 
-import cn.tedu.csmall.server.service.IAlbumService;
+import cn.tedu.csmall.server.service.ISpuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class AlbumController implements IAlbumService {
+public class SpuController implements ISpuService {
     @Autowired
-    public IAlbumService albumService;
-
-
-    public AlbumController(){
-        System.out.println("AlbumController的构造方法已执行");
+    public ISpuService spuService;
+    public SpuController() {
+        System.out.println("SpuController的构造方法已执行");
     }
 }
-
