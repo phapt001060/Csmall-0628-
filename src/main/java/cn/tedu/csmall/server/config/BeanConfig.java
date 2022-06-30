@@ -1,7 +1,5 @@
 package cn.tedu.csmall.server.config;
 
-import cn.tedu.csmall.server.entity.Category;
-import cn.tedu.csmall.server.service.CategoryService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

@@ -8,14 +8,14 @@ import org.springframework.stereotype.Service;
 public class BrandServiceImpl {
 
     @Autowired
-    public IBrandRepository brandRepository;
+    public IBrandRepository brandRepositoryImpl2;
 
     public BrandServiceImpl() {
         System.out.println("BrandServiceImpl的构造方法已经执行");
     }
 
     public void test() {
-        brandRepository.delete();
+        brandRepositoryImpl2.delete();
     }
 
 }

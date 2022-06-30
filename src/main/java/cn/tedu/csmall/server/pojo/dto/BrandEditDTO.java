@@ -3,7 +3,7 @@ package cn.tedu.csmall.server.pojo.dto;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class BrandAddNewDTO implements Serializable {
+public class BrandEditDTO implements Serializable {
 
     private String name;
     private String pinyin;
@@ -73,7 +73,7 @@ public class BrandAddNewDTO implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        BrandAddNewDTO that = (BrandAddNewDTO) o;
+        BrandEditDTO that = (BrandEditDTO) o;
         return Objects.equals(name, that.name) && Objects.equals(pinyin, that.pinyin) && Objects.equals(logo, that.logo) && Objects.equals(categoryId, that.categoryId) && Objects.equals(description, that.description) && Objects.equals(keywords, that.keywords) && Objects.equals(sort, that.sort);
     }
 
@@ -84,7 +84,7 @@ public class BrandAddNewDTO implements Serializable {
 
     @Override
     public String toString() {
-        return "BrandAddNewDTO{" +
+        return "BrandEditDTO{" +
                 "name='" + name + '\'' +
                 ", pinyin='" + pinyin + '\'' +
                 ", logo='" + logo + '\'' +

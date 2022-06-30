@@ -1,7 +1,6 @@
 package cn.tedu.csmall.server.service;
 
 import cn.tedu.csmall.server.repo.ICategoryRepository;
-import cn.tedu.csmall.server.repo.impl.CategoryRepositoryImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

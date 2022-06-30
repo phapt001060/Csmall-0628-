@@ -1,7 +1,8 @@
 package cn.tedu.csmall.server.controller;
 
 import cn.tedu.csmall.server.pojo.dto.BrandAddNewDTO;
-import org.springframework.stereotype.Controller;
+import cn.tedu.csmall.server.pojo.dto.BrandEditDTO;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -13,29 +14,21 @@ public class BrandController {
         System.out.println("BrandController的构造方法已经执行");
     }
 
-
+    // http://localhost:8080/brands/add-new?name=XiaoMi&pinyin=xiaomi&logo=xxx&categoryId=998&description=hahaha&keywords=mi&sort=66
     @RequestMapping("/add-new")
-    public String add(BrandAddNewDTO brandAddNewDTO){
-        System.out.println("BrandController.add");
-        System.out.println("接收到的请求参数:"+brandAddNewDTO);
-        return "即将增加品牌";
+    public String addNew(BrandAddNewDTO brandAddNewDTO) {
+        System.out.println("BrandController.addNew()");
+        System.out.println("接收到的请求参数：" + brandAddNewDTO);
+        return "尝试增加品牌（尚未完成）";
     }
 
-    @RequestMapping("/update-by-id")
-    public String update(){
-        System.out.println("BrandController.update");
-        return "即将根据id修改品牌信息";
+    // http://localhost:8080/brands/6937/edit?name=XiaoMi&pinyin=xiaomi&logo=xxx&categoryId=998&description=hahaha&keywords=mi&sort=66
+    @RequestMapping("/{id:[0-9]+}/edit")
+    public String edit(@PathVariable Long id, BrandEditDTO brandEditDTO) {
+        System.out.println("BrandController.edit()");
+        System.out.println("接收到的请求参数：id=" + id);
+        System.out.println("接收到的请求参数：" + brandEditDTO);
+        return "尝试编辑品牌（尚未完成）";
     }
 
-    @RequestMapping("/delete-by-id")
-    public String delete(){
-        System.out.println("BrandController.delete");
-        return "即将根据id删除品牌信息";
-    }
-
-    @RequestMapping("/list")
-    public String list(){
-        System.out.println("BrandController.list");
-        return "即将查看品牌列表";
-    }
 }
