@@ -4,7 +4,7 @@
 <mapper namespace="cn.tedu.csmall.server.mapper.BrandMapper">
 
     <!-- int insert(Brand brand); -->
-    <insert id="insert">
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
         insert into pms_brand (
             name, pinyin, logo, description, keywords,
             sort, sales, product_count, comment_count, positive_comment_count,
@@ -15,5 +15,23 @@
                      #{enable}, #{gmtCreate}, #{gmtModified}
                  )
     </insert>
+
+    <!--int deleteById(Long id);-->
+    <delete id="deleteById">
+        delete from pms_brand where id=#{id}
+    </delete>
+
+    <update id="updateNameById">
+        update pms_brand set name= #{name} where id=#{id}
+    </update>
+
+    <!-- int deleteByIds(Long... ids); -->
+    <delete id="deleteByIds">
+        delete from pms_brand where id in (
+        <foreach collection="array" item="id" separator=",">
+            #{id}
+        </foreach>
+        )
+    </delete>
 
 </mapper>
