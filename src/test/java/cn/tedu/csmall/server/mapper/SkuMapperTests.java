@@ -1,23 +1,27 @@
 package cn.tedu.csmall.server.mapper;
 
-import cn.tedu.csmall.server.pojo.entity.Picture;
+import cn.tedu.csmall.server.pojo.entity.Sku;
+import cn.tedu.csmall.server.pojo.entity.Spu;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-public class PictureMapperTests {
+public class SkuMapperTests {
+
     @Autowired
-    PictureMapper mapper;
+    SkuMapper mapper;
 
     @Test
-    public void testInsert(){
-        Picture picture= new Picture();
-        picture.setDescription("图片");
-        int rows = mapper.insert(picture);
+    public void testInsert() {
+        Sku sku = new Sku();
+        sku.setId(1L);
+        sku.setTitle("测试");
+        System.out.println("测试添加之前"+sku);
+        int rows = mapper.insert(sku);
         System.out.println("rows="+rows);
+        System.out.println("测试添加之后"+sku);
     }
-
 
     @Test
     public void testDeleteById(){
@@ -29,8 +33,7 @@ public class PictureMapperTests {
     @Test
     public void testUpdateNameById(){
         Long id = 2L;
-        String name = "123";
-        int rows = mapper.updateNameById(id,name);
+        int rows = mapper.updateNameById(id);
         System.out.println("修改完成受影响行数"+rows);
     }
 

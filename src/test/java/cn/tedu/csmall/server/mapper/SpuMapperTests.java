@@ -1,6 +1,5 @@
 package cn.tedu.csmall.server.mapper;
 
-import cn.tedu.csmall.server.pojo.entity.Brand;
 import cn.tedu.csmall.server.pojo.entity.Spu;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +14,9 @@ public class SpuMapperTests {
     @Test
     public void testInsert() {
         Spu spu = new Spu();
-        spu.setName("iwatch");
-        System.out.println("测试添加之间"+spu);
+        spu.setId(1L);
+        spu.setName("测试");
+        System.out.println("测试添加之前"+spu);
         int rows = mapper.insert(spu);
         System.out.println("rows="+rows);
         System.out.println("测试添加之后"+spu);

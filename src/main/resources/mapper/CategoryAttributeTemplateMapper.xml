@@ -3,8 +3,30 @@
 
 <mapper namespace="cn.tedu.csmall.server.mapper.CategoryAttributeTemplateMapper">
 
-    <!--int DeleteCategoryAttributeTemplateById(CategoryAttributeTemplate categoryAttributeTemplate);-->
-    <delete id="DeleteCategoryAttributeTemplateById">
+    <!-- int insert(CategoryAttributeTemplate categoryAttributeTemplate); -->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        insert into pms_category_attribute_template (
+            category_id,attribute_template_id,gmt_create,gmt_modified
+        ) values (
+            #{categoryId},#{attributeTemplateId},#{gmtCreate},#{gmtModified}
+                 )
+    </insert>
+
+    <!--int deleteById(Long id);-->
+    <delete id="deleteById">
         delete from pms_category_attribute_template where id=#{id}
+    </delete>
+
+    <update id="updateNameById">
+        update pms_category_attribute_template set name= #{name} where id=#{id}
+    </update>
+
+    <!-- int deleteByIds(Long... ids); -->
+    <delete id="deleteByIds">
+        delete from pms_category_attribute_template where id in (
+        <foreach collection="array" item="id" separator=",">
+            #{id}
+        </foreach>
+        )
     </delete>
 </mapper>

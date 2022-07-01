@@ -13,7 +13,22 @@
     </insert>
 
 
+    <!--int deleteById(Long id);-->
+    <delete id="deleteById">
+        delete from pms_album where id=#{id}
+    </delete>
+
     <update id="updateNameById">
-        update pms_album set name = #{name} where id=#{id}
+        update pms_album set name= #{name} where id=#{id}
     </update>
+
+    <!-- int deleteByIds(Long... ids); -->
+    <delete id="deleteByIds">
+        delete from pms_album where id in (
+        <foreach collection="array" item="id" separator=",">
+            #{id}
+        </foreach>
+        )
+    </delete>
+
 </mapper>

@@ -3,11 +3,6 @@
 
 <mapper namespace="cn.tedu.csmall.server.mapper.AttributeTemplateMapper">
 
-    <!--int deleteAttributeTemplateById(AttributeTemplate attributeTemplate);-->
-    <delete id="deleteAttributeTemplateById">
-        delete from pms_attribute_template where id=#{id}
-    </delete>
-
     <!--int insertAttributeTemplate(AttributeTemplate attributeTemplate);-->
     <insert id="insertAttributeTemplate" useGeneratedKeys="true" keyProperty="id">
         insert into pms_attribute_template (
@@ -16,4 +11,22 @@
             #{name},#{pinyin},#{keywords},#{sort},#{gmtCreate},#{gmtModified}
                  )
     </insert>
+
+    <!--int deleteById(Long id);-->
+    <delete id="deleteById">
+        delete from pms_attribute_template where id=#{id}
+    </delete>
+
+    <update id="updateNameById">
+        update pms_attribute_template set name= #{name} where id=#{id}
+    </update>
+
+    <!-- int deleteByIds(Long... ids); -->
+    <delete id="deleteByIds">
+        delete from pms_attribute_template where id in (
+        <foreach collection="array" item="id" separator=",">
+            #{id}
+        </foreach>
+        )
+    </delete>
 </mapper>

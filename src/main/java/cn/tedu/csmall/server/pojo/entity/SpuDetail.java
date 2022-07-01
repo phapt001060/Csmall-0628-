@@ -1,22 +1,24 @@
 package cn.tedu.csmall.server.pojo.entity;
 
-import java.io.Serializable;
+
 import java.time.LocalDateTime;
 import java.util.Objects;
+import java.util.Properties;
 
-public class CategoryAttributeTemplate implements Serializable {
+public class SpuDetail {
     private Long id;
-    private Long categoryId;
-    private Long attributeTemplateId;
+    private Long spuId;
+    private String detail;
     private LocalDateTime gmtCreate;
     private LocalDateTime gmtModified;
 
+
     @Override
     public String toString() {
-        return "CategoryAttributeTemplate{" +
+        return "SpuDetail{" +
                 "id=" + id +
-                ", categoryId=" + categoryId +
-                ", attributeTemplateId=" + attributeTemplateId +
+                ", spuId=" + spuId +
+                ", detail='" + detail + '\'' +
                 ", gmtCreate=" + gmtCreate +
                 ", gmtModified=" + gmtModified +
                 '}';
@@ -26,13 +28,13 @@ public class CategoryAttributeTemplate implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        CategoryAttributeTemplate that = (CategoryAttributeTemplate) o;
-        return Objects.equals(id, that.id) && Objects.equals(categoryId, that.categoryId) && Objects.equals(attributeTemplateId, that.attributeTemplateId) && Objects.equals(gmtCreate, that.gmtCreate) && Objects.equals(gmtModified, that.gmtModified);
+        SpuDetail spuDetail = (SpuDetail) o;
+        return Objects.equals(id, spuDetail.id) && Objects.equals(spuId, spuDetail.spuId) && Objects.equals(detail, spuDetail.detail) && Objects.equals(gmtCreate, spuDetail.gmtCreate) && Objects.equals(gmtModified, spuDetail.gmtModified);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, categoryId, attributeTemplateId, gmtCreate, gmtModified);
+        return Objects.hash(id, spuId, detail, gmtCreate, gmtModified);
     }
 
     public Long getId() {
@@ -43,20 +45,20 @@ public class CategoryAttributeTemplate implements Serializable {
         this.id = id;
     }
 
-    public Long getCategoryId() {
-        return categoryId;
+    public Long getSpuId() {
+        return spuId;
     }
 
-    public void setCategoryId(Long categoryId) {
-        this.categoryId = categoryId;
+    public void setSpuId(Long spuId) {
+        this.spuId = spuId;
     }
 
-    public Long getAttributeTemplateId() {
-        return attributeTemplateId;
+    public String getDetail() {
+        return detail;
     }
 
-    public void setAttributeTemplateId(Long attributeTemplateId) {
-        this.attributeTemplateId = attributeTemplateId;
+    public void setDetail(String detail) {
+        this.detail = detail;
     }
 
     public LocalDateTime getGmtCreate() {

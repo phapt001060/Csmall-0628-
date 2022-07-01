@@ -15,4 +15,22 @@
     </insert>
 
 
+    <!--int deleteById(Long id);-->
+    <delete id="deleteById">
+        delete from pms_category where id=#{id}
+    </delete>
+
+    <update id="updateNameById">
+        update pms_category set name= #{name} where id=#{id}
+    </update>
+
+    <!-- int deleteByIds(Long... ids); -->
+    <delete id="deleteByIds">
+        delete from pms_category where id in (
+        <foreach collection="array" item="id" separator=",">
+            #{id}
+        </foreach>
+        )
+    </delete>
+
 </mapper>

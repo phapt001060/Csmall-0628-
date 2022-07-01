@@ -1,15 +1,19 @@
 package cn.tedu.csmall.server.mapper;
-import cn.tedu.csmall.server.pojo.entity.AttributeTemplate;
+
+import cn.tedu.csmall.server.pojo.entity.Brand;
+import cn.tedu.csmall.server.pojo.entity.SpuDetail;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
-public interface AttributeTemplateMapper {
+@Repository//加此注解只是让MapperTests的mapper不报错
+public interface SpuDetailMapper {
+
     /**
-     *
-     * @param attributeTemplate
-     * @return
+     * 插入品牌数据
+     * @param
+     * @return 受影响的行数，成功插入数据时，将返回1
      */
-    int insertAttributeTemplate(AttributeTemplate attributeTemplate);
-
+    int insert(SpuDetail spuDetail);
 
     /**
      * 根据品牌id,删除品牌数据
@@ -21,10 +25,9 @@ public interface AttributeTemplateMapper {
     /**
      * 根据id修改品牌的名称
      * @param id
-     * @param name
      * @return
      */
-    int updateNameById(@Param("id") Long id, @Param("name") String name);
+    int updateNameById(@Param("id") Long id);
 
     /**
      * 根据若干个品牌id，批量删除品牌数据
