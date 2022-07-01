@@ -1,5 +1,7 @@
 package cn.tedu.csmall.server.pojo.dto;
 
+import org.springframework.web.bind.annotation.PathVariable;
+
 import java.io.Serializable;
 import java.util.Objects;
 

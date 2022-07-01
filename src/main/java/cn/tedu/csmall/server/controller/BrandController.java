@@ -2,6 +2,8 @@ package cn.tedu.csmall.server.controller;
 
 import cn.tedu.csmall.server.pojo.dto.BrandAddNewDTO;
 import cn.tedu.csmall.server.pojo.dto.BrandEditDTO;
+import cn.tedu.csmall.server.service.IBrandService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -9,6 +11,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/brands")
 public class BrandController {
+
+    @Autowired
+    private IBrandService brandService;
 
     public BrandController() {
         System.out.println("BrandController的构造方法已经执行");

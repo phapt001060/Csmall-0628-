@@ -1,11 +1,13 @@
-package cn.tedu.csmall.server.service;
+package cn.tedu.csmall.server.service.impl;
 
 import cn.tedu.csmall.server.repo.ICategoryRepository;
+import cn.tedu.csmall.server.repo.impl.CategoryRepositoryImpl;
+import cn.tedu.csmall.server.service.ICategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CategoryService {
+public class CategoryService implements ICategoryService {
 
     @Autowired
     public ICategoryRepository categoryRepository;
