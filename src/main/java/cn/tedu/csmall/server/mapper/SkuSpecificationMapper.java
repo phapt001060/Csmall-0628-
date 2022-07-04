@@ -2,8 +2,14 @@ package cn.tedu.csmall.server.mapper;
 
 import cn.tedu.csmall.server.pojo.entity.SkuSpecification;
 import cn.tedu.csmall.server.pojo.entity.SpuDetail;
+import cn.tedu.csmall.server.pojo.vo.SkuDetailVO;
+import cn.tedu.csmall.server.pojo.vo.SkuListVO;
+import cn.tedu.csmall.server.pojo.vo.SkuSpecificationDetailVO;
+import cn.tedu.csmall.server.pojo.vo.SkuSpecificationListItemVO;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository//加此注解只是让MapperTests的mapper不报错
 public interface SkuSpecificationMapper {
@@ -35,4 +41,24 @@ public interface SkuSpecificationMapper {
      * @return 受影响的行数，将返回成功删除的数据量
      */
     int deleteByIds(Long... ids);
+
+    /**
+     *
+     * @return
+     */
+    int count();
+
+    /**
+     *
+     * @param id
+     * @return
+     */
+    SkuSpecificationDetailVO getById(Long id);
+
+
+    /**
+     * 查询品牌列表
+     * @return 品牌列表的集合
+     */
+    List<SkuSpecificationListItemVO> list();
 }

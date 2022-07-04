@@ -1,8 +1,12 @@
 package cn.tedu.csmall.server.mapper;
 
 import cn.tedu.csmall.server.pojo.entity.Brand;
+import cn.tedu.csmall.server.pojo.vo.BrandDetailVo;
+import cn.tedu.csmall.server.pojo.vo.BrandListItemVO;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository//加此注解只是让MapperTests的mapper不报错
 public interface BrandMapper {
@@ -35,4 +39,49 @@ public interface BrandMapper {
      * @return 受影响的行数，将返回成功删除的数据量
      */
     int deleteByIds(Long... ids);
+
+
+    /**
+     *根据Id修改信息,传入的参数应该包括修改的字段值,保持为null的属性对应的字段将不会被修改 注意:必须封装ID值
+     * @param brand 封装了新的值的对象
+     * @return  受影响的行数，将返回成功删除的数据量 1 失败则是0
+     */
+    int updateById(Brand brand);
+
+    /**
+     *
+     * @return
+     */
+    int count();
+
+    /**
+     *
+     * @param id
+     * @return
+     */
+    BrandDetailVo getById(Long id);
+
+
+    /**
+     * 查询品牌列表
+     * @return 品牌列表的集合
+     */
+    List<BrandListItemVO> list();
+
+    /**
+     *
+     * @param offset
+     * @param count
+     * @return
+     */
+    List<BrandListItemVO> listPage(
+            @Param("offset") Integer offset,@Param("count") Integer count
+    );
+
+    /**
+     *
+     * @param name
+     * @return
+     */
+    BrandDetailVo getByName(String name);
 }

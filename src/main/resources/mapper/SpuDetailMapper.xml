@@ -30,4 +30,44 @@
         )
     </delete>
 
+
+    <select id="getById" resultMap="DetailResultMap">
+        select
+        <include refid="DetailQueryFields" />
+        from
+        pms_spu_detail
+        where
+        id=#{id}
+    </select>
+
+    <sql id="DetailQueryFields">
+        id, spu_id, detail
+    </sql>
+
+    <resultMap id="DetailResultMap" type="cn.tedu.csmall.server.pojo.vo.SpuDetailTwoVO">
+        <result column="sku_id" property="skuId" />
+        <result column="attribute_id" property="attributeId" />
+        <result column="attribute_name" property="attributeName" />
+        <result column="attribute_value" property="attributeValue" />
+        <result column="gmt_create" property="gmtCreate" />
+        <result column="gmt_modified" property="gmtModified" />
+    </resultMap>
+
+    <select id="list" resultMap="ListCategory">
+        select
+        <include refid="ListItemQueryFields" />
+        from
+        pms_spu_detail
+        order by id
+    </select>
+
+    <sql id="ListItemQueryFields">
+        <if test="true">
+            id, spu_id, detail
+        </if>
+    </sql>
+
+    <resultMap id="ListCategory" type="cn.tedu.csmall.server.pojo.vo.SpuDetailTwoListItemVO">
+        <result column="spu_id" property="spuId" />
+    </resultMap>
 </mapper>

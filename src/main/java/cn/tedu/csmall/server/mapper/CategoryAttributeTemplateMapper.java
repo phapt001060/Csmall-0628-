@@ -2,7 +2,13 @@ package cn.tedu.csmall.server.mapper;
 
 import cn.tedu.csmall.server.pojo.entity.Brand;
 import cn.tedu.csmall.server.pojo.entity.CategoryAttributeTemplate;
+import cn.tedu.csmall.server.pojo.vo.BrandDetailVo;
+import cn.tedu.csmall.server.pojo.vo.BrandListItemVO;
+import cn.tedu.csmall.server.pojo.vo.CategoryAttributeTemplateDetailVO;
+import cn.tedu.csmall.server.pojo.vo.CategoryAttributeTemplateListItemVO;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface CategoryAttributeTemplateMapper {
 
@@ -34,4 +40,24 @@ public interface CategoryAttributeTemplateMapper {
      * @return 受影响的行数，将返回成功删除的数据量
      */
     int deleteByIds(Long... ids);
+
+    /**
+     *
+     * @return
+     */
+    int count();
+
+    /**
+     *
+     * @param id
+     * @return
+     */
+    CategoryAttributeTemplateDetailVO getById(Long id);
+
+
+    /**
+     * 查询品牌列表
+     * @return 品牌列表的集合
+     */
+    List<CategoryAttributeTemplateListItemVO> list();
 }

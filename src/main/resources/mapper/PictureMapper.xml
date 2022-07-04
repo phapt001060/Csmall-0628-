@@ -31,4 +31,43 @@
         </foreach>
         )
     </delete>
+
+
+    <select id="getById" resultMap="DetailResultMap">
+        select
+        <include refid="DetailQueryFields" />
+        from
+        pms_picture
+        where
+        id=#{id}
+    </select>
+
+    <sql id="DetailQueryFields">
+        id, album_id, url, description, width, height, is_cover, sort
+    </sql>
+
+    <resultMap id="DetailResultMap" type="cn.tedu.csmall.server.pojo.vo.PictureDetailVO">
+        <result column="album_id" property="albumId" />
+        <result column="is_cover" property="isCover" />
+    </resultMap>
+
+    <select id="list" resultMap="ListCategory">
+        select
+        <include refid="ListItemQueryFields" />
+        from
+        pms_picture
+        order by id
+    </select>
+
+    <sql id="ListItemQueryFields">
+        <if test="true">
+            id, album_id, url, description, width, height, is_cover, sort
+        </if>
+    </sql>
+
+    <resultMap id="ListCategory" type="cn.tedu.csmall.server.pojo.vo.PictureListItemVO">
+        <result column="album_id" property="albumId" />
+        <result column="is_cover" property="isCover" />
+    </resultMap>
+
 </mapper>

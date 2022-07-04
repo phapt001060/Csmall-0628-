@@ -31,4 +31,38 @@
         )
     </delete>
 
+
+    <select id="count" resultType="int">
+        select count(*) from pms_album
+    </select>
+
+    <select id="getById" resultType="cn.tedu.csmall.server.pojo.vo.AlbumDetailVO">
+        select
+        <include refid="DetailQueryFields" />
+        from
+        pms_album
+
+        where
+        id=#{id}
+    </select>
+
+    <sql id="DetailQueryFields">
+        <if test="true">
+            id,name,description,sort
+        </if>
+    </sql>
+
+    <select id="list" resultType="cn.tedu.csmall.server.pojo.vo.AlbumListItemVO">
+        select
+        <include refid="ListItemQueryFields" />
+        from
+        pms_album
+        order by id
+    </select>
+
+    <sql id="ListItemQueryFields">
+        id,name,description,sort
+    </sql>
+
+
 </mapper>

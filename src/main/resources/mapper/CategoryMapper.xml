@@ -33,4 +33,52 @@
         )
     </delete>
 
+    <select id="count" resultType="int">
+        select count(*) from pms_category
+    </select>
+
+
+
+
+    <select id="getById" resultMap="DetailResultMap">
+        select
+        <include refid="DetailQueryFields" />
+        from
+        pms_category
+        where
+        id=#{id}
+    </select>
+
+    <sql id="DetailQueryFields">
+        id, name, parent_id, depth,keywords, sort,icon,enable,is_parent,is_display
+    </sql>
+
+    <resultMap id="DetailResultMap" type="cn.tedu.csmall.server.pojo.vo.CategoryDetailVO">
+        <result column="parent_id" property="parent_Id" />
+        <result column="is_parent" property="isParent" />
+        <result column="is_display" property="isDisplay" />
+    </resultMap>
+
+    <select id="list" resultMap="ListCategory">
+        select
+        <include refid="ListItemQueryFields" />
+        from
+        pms_category
+        order by id
+    </select>
+
+    <sql id="ListItemQueryFields">
+        <if test="true">
+             id, name, parent_id, depth,keywords, sort,icon,enable,is_parent,is_display
+        </if>
+    </sql>
+
+    <resultMap id="ListCategory" type="cn.tedu.csmall.server.pojo.vo.CategoryListItemVO">
+        <result column="parent_id" property="parentId" />
+        <result column="is_parent" property="isParent" />
+        <result column="is_display" property="isDisplay" />
+    </resultMap>
+
+
+
 </mapper>

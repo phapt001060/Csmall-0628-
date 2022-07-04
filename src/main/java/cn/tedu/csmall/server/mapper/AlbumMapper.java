@@ -1,9 +1,14 @@
 package cn.tedu.csmall.server.mapper;
 
 import cn.tedu.csmall.server.pojo.entity.Album;
+import cn.tedu.csmall.server.pojo.vo.AlbumDetailVO;
+import cn.tedu.csmall.server.pojo.vo.AlbumListItemVO;
+import cn.tedu.csmall.server.pojo.vo.BrandDetailVo;
+import cn.tedu.csmall.server.pojo.vo.BrandListItemVO;
 import org.apache.ibatis.annotations.Param;
 
 import java.lang.annotation.Retention;
+import java.util.List;
 
 
 public interface AlbumMapper {
@@ -35,4 +40,25 @@ public interface AlbumMapper {
      * @return 受影响的行数，将返回成功删除的数据量
      */
     int deleteByIds(Long... ids);
+
+    /**
+     *
+     * @return
+     */
+    int count();
+
+    /**
+     *
+     * @param id
+     * @return
+     */
+    AlbumDetailVO getById(Long id);
+
+    /**
+     * 查询品牌列表
+     * @return 品牌列表的集合
+     */
+    List<AlbumListItemVO> list();
+
+
 }

@@ -32,4 +32,55 @@
         </foreach>
         )
     </delete>
+
+
+
+
+    <select id="count" resultType="int">
+        select count(*) from pms_attribute
+    </select>
+
+    <select id="getById" resultMap="DetailResultMap">
+        select
+        <include refid="DetailQueryFields" />
+        from
+        pms_attribute
+
+        where
+        id=#{id}
+    </select>
+
+    <resultMap id="DetailResultMap" type="cn.tedu.csmall.server.pojo.vo.AttributeDetailVO">
+        <result column="template_id" property="templateId" />
+        <result column="input_type" property="inputType" />
+        <result column="is_allow_customize" property="isAllowCustomize" />
+    </resultMap>
+
+    <sql id="DetailQueryFields">
+        <if test="true">
+            id, template_id, name, description, type,
+            input_type, value_list, unit, sort, is_allow_customize
+        </if>
+    </sql>
+
+
+    <select id="list" resultMap="ListItemResultMap">
+        select
+        <include refid="ListItemQueryFields" />
+        from
+        pms_attribute
+        order by id
+    </select>
+
+    <resultMap id="ListItemResultMap" type="cn.tedu.csmall.server.pojo.vo.AttributeListItemVO">
+        <id column="id" property="id" />
+        <result column="template_id" property="templateId" />
+        <result column="input_type" property="inputType" />
+        <result column="is_allow_customize" property="isAllowCustomize" />
+    </resultMap>
+
+    <sql id="ListItemQueryFields">
+        id, template_id, name, description, type,
+        input_type, value_list, unit, sort, is_allow_customize
+    </sql>
 </mapper>

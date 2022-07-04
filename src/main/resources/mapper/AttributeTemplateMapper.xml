@@ -29,4 +29,49 @@
         </foreach>
         )
     </delete>
+
+
+
+
+
+    <select id="count" resultType="int">
+        select count(*) from pms_attribute_template
+    </select>
+
+    <select id="getById" resultMap="DetailResultMap">
+        select
+        <include refid="DetailQueryFields" />
+        from
+        pms_attribute_template
+
+        where
+        id=#{id}
+    </select>
+
+    <resultMap id="DetailResultMap" type="cn.tedu.csmall.server.pojo.vo.AttributeTemplateDetailVO">
+
+    </resultMap>
+
+    <sql id="DetailQueryFields">
+        <if test="true">
+            id, name, pinyin, keywords, sort
+        </if>
+    </sql>
+
+
+    <select id="list" resultMap="ListItemResultMap">
+        select
+        <include refid="ListItemQueryFields" />
+        from
+        pms_attribute_template
+        order by id
+    </select>
+
+    <resultMap id="ListItemResultMap" type="cn.tedu.csmall.server.pojo.vo.AttributeTemplateListItemVO">
+        <id column="id" property="id" />
+    </resultMap>
+
+    <sql id="ListItemQueryFields">
+        id, name, pinyin, keywords, sort
+    </sql>
 </mapper>

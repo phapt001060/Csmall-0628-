@@ -37,4 +37,52 @@
         )
     </delete>
 
+
+    <select id="getById" resultMap="DetailResultMap">
+        select
+        <include refid="DetailQueryFields" />
+        from
+        pms_sku_specification
+        where
+        id=#{id}
+    </select>
+
+    <sql id="DetailQueryFields">
+        id, sku_id, attribute_id, attribute_name, attribute_value,
+        unit, sort, gmt_create, gmt_modified
+    </sql>
+
+    <resultMap id="DetailResultMap" type="cn.tedu.csmall.server.pojo.vo.SkuSpecificationDetailVO">
+        <result column="sku_id" property="skuId" />
+        <result column="attribute_id" property="attributeId" />
+        <result column="attribute_name" property="attributeName" />
+        <result column="attribute_value" property="attributeValue" />
+        <result column="gmt_create" property="gmtCreate" />
+        <result column="gmt_modified" property="gmtModified" />
+    </resultMap>
+
+    <select id="list" resultMap="ListCategory">
+        select
+        <include refid="ListItemQueryFields" />
+        from
+        pms_sku_specification
+        order by id
+    </select>
+
+    <sql id="ListItemQueryFields">
+        <if test="true">
+            id, sku_id, attribute_id, attribute_name, attribute_value,
+            unit, sort, gmt_create, gmt_modified
+        </if>
+    </sql>
+
+    <resultMap id="ListCategory" type="cn.tedu.csmall.server.pojo.vo.SkuSpecificationListItemVO">
+        <result column="sku_id" property="skuId" />
+        <result column="attribute_id" property="attributeId" />
+        <result column="attribute_name" property="attributeName" />
+        <result column="attribute_value" property="attributeValue" />
+        <result column="gmt_create" property="gmtCreate" />
+        <result column="gmt_modified" property="gmtModified" />
+    </resultMap>
+
 </mapper>

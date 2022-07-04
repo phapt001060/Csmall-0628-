@@ -2,9 +2,15 @@ package cn.tedu.csmall.server.mapper;
 
 import cn.tedu.csmall.server.pojo.entity.Album;
 import cn.tedu.csmall.server.pojo.entity.Category;
+import cn.tedu.csmall.server.pojo.vo.BrandDetailVo;
+import cn.tedu.csmall.server.pojo.vo.BrandListItemVO;
+import cn.tedu.csmall.server.pojo.vo.CategoryDetailVO;
+import cn.tedu.csmall.server.pojo.vo.CategoryListItemVO;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import java.util.List;
 
 @SpringBootTest
 public class CategoryMapperTests {
@@ -42,4 +48,28 @@ public class CategoryMapperTests {
         System.out.println("批量删除完成，受影响的行数=" + rows);
     }
 
+    @Test
+    public void testCount(){
+        int count =  mapper.count();
+        System.out.println("查询结果"+count);
+    }
+
+
+
+
+    @Test
+    public void testSelect(){
+        Long id = 6L;
+        CategoryDetailVO category = mapper.getById(id);
+        System.out.println("根据id="+id+"查询完成:"+category);
+    }
+
+    @Test
+    public void testList() {
+        List<CategoryListItemVO> list = mapper.list();
+        System.out.println("查询列表完成，结果集中的数据的数量=" + list.size());
+        for (CategoryListItemVO item : list) {
+            System.out.println(item);
+        }
+    }
 }

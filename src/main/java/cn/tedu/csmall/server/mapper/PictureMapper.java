@@ -1,10 +1,15 @@
 package cn.tedu.csmall.server.mapper;
 
 import cn.tedu.csmall.server.pojo.entity.Picture;
+import cn.tedu.csmall.server.pojo.vo.CategoryDetailVO;
+import cn.tedu.csmall.server.pojo.vo.CategoryListItemVO;
+import cn.tedu.csmall.server.pojo.vo.PictureDetailVO;
+import cn.tedu.csmall.server.pojo.vo.PictureListItemVO;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.io.Serializable;
+import java.util.List;
 
 @Repository
 public interface PictureMapper  {
@@ -36,4 +41,24 @@ public interface PictureMapper  {
      * @return 受影响的行数，将返回成功删除的数据量
      */
     int deleteByIds(Long... ids);
+
+    /**
+     *
+     * @return
+     */
+    int count();
+
+    /**
+     *
+     * @param id
+     * @return
+     */
+     PictureDetailVO getById(Long id);
+
+
+    /**
+     * 查询品牌列表
+     * @return 品牌列表的集合
+     */
+    List<PictureListItemVO> list();
 }

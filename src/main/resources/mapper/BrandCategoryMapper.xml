@@ -29,4 +29,50 @@
         </foreach>
         )
     </delete>
+
+
+
+    <select id="count" resultType="int">
+        select count(*) from pms_brand_category
+    </select>
+
+    <select id="getById" resultMap="DetailResultMap">
+        select
+        <include refid="DetailQueryFields" />
+        from
+        pms_brand_category
+
+        where
+        id=#{id}
+    </select>
+
+    <resultMap id="DetailResultMap" type="cn.tedu.csmall.server.pojo.vo.BrandCategoryDetailVO">
+        <result column="brand_id" property="brandId" />
+        <result column="category_id" property="categoryId" />
+    </resultMap>
+
+    <sql id="DetailQueryFields">
+        <if test="true">
+            id, brand_id, category_id
+        </if>
+    </sql>
+
+
+    <select id="list" resultMap="ListItemResultMap">
+        select
+        <include refid="ListItemQueryFields" />
+        from
+        pms_brand_category
+        order by id
+    </select>
+
+    <resultMap id="ListItemResultMap" type="cn.tedu.csmall.server.pojo.vo.BrandCategoryListItemVO">
+        <id column="id" property="id" />
+        <result column="brand_id" property="brandId" />
+        <result column="category_id" property="categoryId" />
+    </resultMap>
+
+    <sql id="ListItemQueryFields">
+        id, brand_id, category_id
+    </sql>
 </mapper>
