@@ -1,6 +1,7 @@
 package cn.tedu.csmall.server.config;
 
 import com.github.xiaoymin.knife4j.spring.extension.OpenApiExtensionResolver;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,6 +14,13 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2WebMvc;
 
+/**
+ * Knife4j配置类
+ *
+ * @author java@tedu.cn
+ * @version 0.0.1
+ */
+@Slf4j
 @Configuration
 @EnableSwagger2WebMvc
 public class Knife4jConfiguration {
@@ -61,6 +69,10 @@ public class Knife4jConfiguration {
     @Autowired
     private OpenApiExtensionResolver openApiExtensionResolver;
 
+    public Knife4jConfiguration() {
+        log.debug("加载配置类：Knife4jConfiguration");
+    }
+
     @Bean
     public Docket docket() {
         String groupName = "1.0.0";
@@ -85,4 +97,5 @@ public class Knife4jConfiguration {
                 .version(version)
                 .build();
     }
+
 }

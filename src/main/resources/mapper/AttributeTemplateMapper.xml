@@ -1,77 +1,37 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="cn.tedu.csmall.server.mapper.AttributeTemplateMapper">
 
-    <!--int insertAttributeTemplate(AttributeTemplate attributeTemplate);-->
-    <insert id="insertAttributeTemplate" useGeneratedKeys="true" keyProperty="id">
-        insert into pms_attribute_template (
-            name,pinyin,keywords,sort,gmt_create,gmt_modified
-        ) values (
-            #{name},#{pinyin},#{keywords},#{sort},#{gmtCreate},#{gmtModified}
-                 )
+    <!-- int insert(AttributeTemplate attributeTemplate); -->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO pms_attribute_template (
+            name, pinyin, keywords, sort
+        ) VALUES (
+            #{name}, #{pinyin}, #{keywords}, #{sort}
+        )
     </insert>
 
-    <!--int deleteById(Long id);-->
+    <!-- int deleteById(Long id); -->
     <delete id="deleteById">
-        delete from pms_attribute_template where id=#{id}
+        DELETE
+        FROM
+            pms_attribute_template
+        WHERE
+            id = #{id}
     </delete>
-
-    <update id="updateNameById">
-        update pms_attribute_template set name= #{name} where id=#{id}
-    </update>
 
     <!-- int deleteByIds(Long... ids); -->
     <delete id="deleteByIds">
-        delete from pms_attribute_template where id in (
-        <foreach collection="array" item="id" separator=",">
-            #{id}
-        </foreach>
-        )
+        DELETE
+        FROM
+            pms_attribute_template
+        WHERE
+            id IN (
+                <foreach collection="array" item="id" separator=",">
+                    #{id}
+                </foreach>
+            )
     </delete>
 
-
-
-
-
-    <select id="count" resultType="int">
-        select count(*) from pms_attribute_template
-    </select>
-
-    <select id="getById" resultMap="DetailResultMap">
-        select
-        <include refid="DetailQueryFields" />
-        from
-        pms_attribute_template
-
-        where
-        id=#{id}
-    </select>
-
-    <resultMap id="DetailResultMap" type="cn.tedu.csmall.server.pojo.vo.AttributeTemplateDetailVO">
-
-    </resultMap>
-
-    <sql id="DetailQueryFields">
-        <if test="true">
-            id, name, pinyin, keywords, sort
-        </if>
-    </sql>
-
-
-    <select id="list" resultMap="ListItemResultMap">
-        select
-        <include refid="ListItemQueryFields" />
-        from
-        pms_attribute_template
-        order by id
-    </select>
-
-    <resultMap id="ListItemResultMap" type="cn.tedu.csmall.server.pojo.vo.AttributeTemplateListItemVO">
-        <id column="id" property="id" />
-    </resultMap>
-
-    <sql id="ListItemQueryFields">
-        id, name, pinyin, keywords, sort
-    </sql>
 </mapper>

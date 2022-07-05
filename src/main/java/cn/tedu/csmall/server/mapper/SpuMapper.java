@@ -1,59 +1,39 @@
 package cn.tedu.csmall.server.mapper;
 
 import cn.tedu.csmall.server.pojo.entity.Spu;
-import cn.tedu.csmall.server.pojo.vo.SpuDetailTwoListItemVO;
-import cn.tedu.csmall.server.pojo.vo.SpuDetailTwoVO;
-import cn.tedu.csmall.server.pojo.vo.SpuDetailVO;
-import cn.tedu.csmall.server.pojo.vo.SpuListItemVO;
+import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
+/**
+ * SPU（Standard Product Unit）Mapper接口
+ *
+ * @author java@tedu.cn
+ * @version 0.0.1
+ */
+@Repository
 public interface SpuMapper {
+
     /**
+     * 新增SPU
      *
-     * @param spu
-     * @return
+     * @param spu 新增的SPU对象
+     * @return 受影响的行数
      */
     int insert(Spu spu);
 
     /**
+     * 根据id删除SPU
      *
-     * @param id
-     * @return
+     * @param id 被删除的SPU的id
+     * @return 受影响的行数
      */
     int deleteById(Long id);
 
     /**
+     * 根据若干个SPU id，批量删除SPU数据
      *
-     * @param id
-     * @return
-     */
-    int updateNameById(Long id);
-
-    /**
-     *
-     * @param ids
-     * @return
+     * @param ids 期望删除的若干个SPU数据的id
+     * @return 受影响的行数，将返回成功删除的数据量
      */
     int deleteByIds(Long... ids);
 
-    /**
-     *
-     * @return
-     */
-    int count();
-
-    /**
-     *
-     * @param id
-     * @return
-     */
-    SpuDetailVO getById(Long id);
-
-
-    /**
-     * 查询品牌列表
-     * @return 品牌列表的集合
-     */
-    List<SpuListItemVO> list();
 }

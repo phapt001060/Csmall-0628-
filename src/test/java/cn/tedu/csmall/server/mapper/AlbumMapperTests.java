@@ -13,61 +13,61 @@ import java.util.List;
 @SpringBootTest
 @Slf4j
 public class AlbumMapperTests {
+
     @Autowired
     AlbumMapper mapper;
 
     @Test
-    public void testInsert(){
+    public void testInsert() {
         Album album = new Album();
-        album.setName("图片");
-        log.info("测试添加之间 {}",album);
+        album.setName("小米13的相册");
+
+        log.info("插入数据之前，参数={}", album);
         int rows = mapper.insert(album);
-        log.info("rows={}",rows);
-        log.info("测试添加之后 {}",album);
+        log.info("rows = {}", rows);
+        log.info("插入数据之后，参数={}", album);
     }
 
     @Test
-    public void testUpdateNameById(){
-        Long id = 3L;
-        String name = "猪哥哥";
-        int rows = mapper.updateNameById(id,name);
-        log.info("修改完成 {}",rows);
-    }
-
-    @Test
-    public void testDeleteById(){
+    public void testDeleteById() {
         Long id = 1L;
         int rows = mapper.deleteById(id);
-        log.info("删除完成,收影响行数 {}",rows);
+        log.info("删除完成，受影响的行数=" + rows);
     }
 
     @Test
     public void testDeleteByIds() {
-        int rows = mapper.deleteByIds(2L, 3L, 5L, 7L, 9L);
-        log.info("批量删除完成，受影响的行数 {}" , rows);
+        int rows = mapper.deleteByIds(1L, 3L, 5L, 7L, 9L);
+        log.info("批量删除完成，受影响的行数=" + rows);
     }
 
     @Test
-    public void testCount(){
-        int count =  mapper.count();
-        log.info("查询结果 {}",count);
+    public void testCount() {
+        int count = mapper.count();
+        log.debug("统计数量完成，统计结果=" + count);
     }
 
     @Test
-    public void testSelect(){
-        Long id = 3L;
-        AlbumDetailVO albumDetailVO = mapper.getById(id);
-        log.info("根据id= {}",id,"查询完成:",albumDetailVO);
+    public void testCountByName() {
+        String name = "小米15的相册";
+        int count = mapper.countByName(name);
+        log.debug("根据名称【{}】统计相册数量完成，统计结果={}", name, count);
+    }
+
+    @Test
+    public void testGetById() {
+        Long id = 1L;
+        AlbumDetailVO album = mapper.getById(id);
+        log.debug("根据id={}查询完成，查询结果={}", id, album);
     }
 
     @Test
     public void testList() {
         List<AlbumListItemVO> list = mapper.list();
-        log.info("查询列表完成，结果集中的数据的数量=" + list.size());
+        log.debug("查询列表完成，结果集中的数据的数量=" + list.size());
         for (AlbumListItemVO item : list) {
-            log.info("{}",item);
+            log.debug("{}", item);
         }
     }
-
 
 }

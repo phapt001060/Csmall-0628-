@@ -13,9 +13,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
-@Api(tags = "4.品牌管理模块")
+/**
+ * 品牌控制器
+ *
+ * @author java@tedu.cn
+ * @version 0.0.1
+ */
 @Slf4j
+@Api(tags = "1. 品牌管理模块")
+@RestController
 @RequestMapping("/brands")
 public class BrandController {
 
@@ -23,18 +29,17 @@ public class BrandController {
     private IBrandService brandService;
 
     public BrandController() {
-        System.out.println("BrandController的构造方法已经执行");
+        log.debug("创建控制器对象：BrandController");
     }
 
     // http://localhost:8080/brands/add-new?name=XiaoMi&pinyin=xiaomi&logo=xxx&categoryId=998&description=hahaha&keywords=mi&sort=66
-    @ApiOperation("增加品牌")
+    @ApiOperation("创建品牌")
     @ApiOperationSupport(order = 100)
     @PostMapping("/add-new")
     public String addNew(BrandAddNewDTO brandAddNewDTO) {
-        System.out.println("BrandController.addNew()");
-        System.out.println("接收到的请求参数：" + brandAddNewDTO);
+        log.debug("接收到的请求参数：{}", brandAddNewDTO);
         brandService.addNew(brandAddNewDTO);
-        return "尝试增加品牌（尚未完成）";
+        return "OK";
     }
 
     // http://localhost:8080/brands/6937/edit?name=XiaoMi&pinyin=xiaomi&logo=xxx&categoryId=998&description=hahaha&keywords=mi&sort=66
@@ -42,11 +47,9 @@ public class BrandController {
     @ApiOperationSupport(order = 300)
     @PostMapping("/{id:[0-9]+}/edit")
     public String edit(@PathVariable Long id, BrandEditDTO brandEditDTO) {
-        System.out.println("BrandController.edit()");
-        System.out.println("接收到的请求参数：id=" + id);
-        System.out.println("接收到的请求参数：" + brandEditDTO);
+        log.debug("接收到的请求参数：id=" + id);
+        log.debug("接收到的请求参数：" + brandEditDTO);
         return "尝试编辑品牌（尚未完成）";
     }
-
 
 }

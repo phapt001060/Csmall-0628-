@@ -1,19 +1,26 @@
 package cn.tedu.csmall.server.service.impl;
 
 import cn.tedu.csmall.server.repo.IAttributeRepository;
-import cn.tedu.csmall.server.repo.impl.AttributeRepositoryImpl;
 import cn.tedu.csmall.server.service.IAttributeService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+/**
+ * 属性业务实现
+ *
+ * @author java@tedu.cn
+ * @version 0.0.1
+ */
+@Slf4j
 @Service
 public class AttributeServiceImpl implements IAttributeService {
 
     @Autowired
-    public IAttributeRepository attributeRepository;
+    private IAttributeRepository attributeRepository;
 
     public AttributeServiceImpl() {
-        System.out.println("AttributeServiceImpl的构造方法已经执行");
+        log.debug("创建业务逻辑对象：AttributeServiceImpl");
     }
 
 }

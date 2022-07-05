@@ -1,21 +1,28 @@
 package cn.tedu.csmall.server.controller;
 
 import cn.tedu.csmall.server.service.ISkuService;
-import cn.tedu.csmall.server.service.ISpuService;
 import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
-@Api(tags = "6.SKU管理模块")
+/**
+ * SKU控制器
+ *
+ * @author java@tedu.cn
+ * @version 0.0.1
+ */
 @Slf4j
+@Api(tags = "7. SKU管理模块")
+@RequestMapping("/skus")
+@RestController
 public class SkuController {
 
     @Autowired
-    public ISkuService skuService;
+    private ISkuService skuService;
 
     public SkuController() {
-        System.out.println("SkuController的构造方法已经执行");
+        log.debug("创建控制器对象：SkuController");
     }
 }

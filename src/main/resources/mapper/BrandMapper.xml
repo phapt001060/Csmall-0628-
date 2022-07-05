@@ -5,109 +5,140 @@
 
     <!-- int insert(Brand brand); -->
     <insert id="insert" useGeneratedKeys="true" keyProperty="id">
-        insert into pms_brand (
+        INSERT INTO pms_brand (
             name, pinyin, logo, description, keywords,
             sort, sales, product_count, comment_count, positive_comment_count,
             enable, gmt_create, gmt_modified
-        ) values (
-                     #{name}, #{pinyin}, #{logo}, #{description}, #{keywords},
-                     #{sort}, #{sales}, #{productCount}, #{commentCount}, #{positiveCommentCount},
-                     #{enable}, #{gmtCreate}, #{gmtModified}
-                 )
+        ) VALUES (
+            #{name}, #{pinyin}, #{logo}, #{description}, #{keywords},
+            #{sort}, #{sales}, #{productCount}, #{commentCount}, #{positiveCommentCount},
+            #{enable}, #{gmtCreate}, #{gmtModified}
+        )
     </insert>
 
-    <!--int deleteById(Long id);-->
+    <!-- int deleteById(Long id); -->
     <delete id="deleteById">
-        delete from pms_brand where id=#{id}
+        DELETE
+        FROM
+            pms_brand
+        WHERE
+            id=#{id}
     </delete>
-
-    <update id="updateNameById">
-        update pms_brand set name= #{name} where id=#{id}
-    </update>
 
     <!-- int deleteByIds(Long... ids); -->
     <delete id="deleteByIds">
-        delete from pms_brand where id in (
-        <foreach collection="array" item="id" separator=",">
-            #{id}
-        </foreach>
-        )
+        DELETE
+        FROM
+            pms_brand
+        WHERE
+            id IN (
+                <foreach collection="array" item="id" separator=",">
+                    #{id}
+                </foreach>
+            )
     </delete>
-
 
     <!-- int updateById(Brand brand); -->
     <update id="updateById">
-            update
-                pms_brand
-            <set>
-                <if test="name != null">
-                    name =#{name},
-                </if>
-
-                <if test="pinyin != null">
-                    pinyin = #{pinyin},
-                </if>
-
-                <if test="logo != null">
-                    logo = #{logo},
-                </if>
-
-                <if test="description != null">
-                    description=#{description},
-                </if>
-                <if test="keywords != null">
-                    keywords=#{keywords},
-                </if>
-                <if test="sort != null">
-                    sort=#{sort},
-                </if>
-                <if test="sales != null">
-                    sales=#{sales},
-                </if>
-                <if test="productCount != null">
-                    product_count=#{productCount},
-                </if>
-                <if test="commentCount != null">
-                    comment_count=#{commentCount},
-                </if>
-                <if test="positiveCommentCount != null">
-                    positive_comment_count=#{positiveCommentCount},
-                </if>
-                <if test="enable != null">
-                    enable=#{enable},
-                </if>
-            </set>
-                where
-                    id=#{id}
+        UPDATE
+            pms_brand
+        <set>
+            <if test="name != null">
+                name=#{name},
+            </if>
+            <if test="pinyin != null">
+                pinyin=#{pinyin},
+            </if>
+            <if test="logo != null">
+                logo=#{logo},
+            </if>
+            <if test="description != null">
+                description=#{description},
+            </if>
+            <if test="keywords != null">
+                keywords=#{keywords},
+            </if>
+            <if test="sort != null">
+                sort=#{sort},
+            </if>
+            <if test="sales != null">
+                sales=#{sales},
+            </if>
+            <if test="productCount != null">
+                product_count=#{productCount},
+            </if>
+            <if test="commentCount != null">
+                comment_count=#{commentCount},
+            </if>
+            <if test="positiveCommentCount != null">
+                positive_comment_count=#{positiveCommentCount},
+            </if>
+            <if test="enable != null">
+                enable=#{enable},
+            </if>
+        </set>
+        WHERE
+            id=#{id}
     </update>
 
-
-    <select id="count" resultType="int">
-        select count(*) from pms_brand
-    </select>
-
-    <select id="getById" resultMap="DetailResultMap">
-        select
-            <include refid="DetailQueryFields" />
-         from
-              pms_brand
-
-        where
-              id=#{id}
-    </select>
-
-    <resultMap id="DetailResultMap" type="cn.tedu.csmall.server.pojo.vo.BrandDetailVo">
-        <result column="product_count" property="productCount" />
-        <result column="comment_count" property="commentCount" />
-        <result column="positive_comment_count" property="positiveCommentCount" />
-    </resultMap>
-
-    <select id="list" resultMap="ListItemResultMap">
-        select
-            <include refid="ListItemQueryFields" />
-        from
+    <!-- int updateNameById(@Param("id") Long id, @Param("name") String name); -->
+    <update id="updateNameById">
+        UPDATE
             pms_brand
-        order by id
+        SET
+            name=#{name}
+        WHERE
+            id=#{id}
+    </update>
+
+    <!-- int count(); -->
+    <select id="count" resultType="int">
+        SELECT count(*) FROM pms_brand
+    </select>
+
+    <!-- int countByName(String name); -->
+    <select id="countByName" resultType="int">
+        SELECT count(*) FROM pms_brand WHERE name=#{name}
+    </select>
+
+    <!-- BrandDetailVO getById(Long id); -->
+    <select id="getById" resultMap="DetailResultMap">
+        SELECT
+            <include refid="DetailQueryFields" />
+        FROM
+            pms_brand
+        WHERE
+            id=#{id}
+    </select>
+
+    <!-- BrandDetailVO getByName(String name); -->
+    <select id="getByName" resultMap="DetailResultMap">
+        SELECT
+            <include refid="DetailQueryFields" />
+        FROM
+            pms_brand
+        WHERE
+            name=#{name}
+    </select>
+
+    <!-- List<BrandListItemVO> list(); -->
+    <select id="list" resultMap="ListItemResultMap">
+        SELECT
+            <include refid="ListItemQueryFields" />
+        FROM
+            pms_brand
+        ORDER BY id
+    </select>
+
+    <!-- List<BrandListItemVO> listPage(
+            @Param("offset") Integer offset, @Param("count") Integer count); -->
+    <select id="listPage" resultMap="ListItemResultMap">
+        SELECT
+            <include refid="ListItemQueryFields" />
+        FROM
+            pms_brand
+        ORDER BY id
+        LIMIT ${offset}, ${count}
     </select>
 
     <sql id="DetailQueryFields">
@@ -118,10 +149,19 @@
         </if>
     </sql>
 
+    <resultMap id="DetailResultMap" type="cn.tedu.csmall.server.pojo.vo.BrandDetailVO">
+        <id column="id" property="id" />
+        <result column="product_count" property="productCount" />
+        <result column="comment_count" property="commentCount" />
+        <result column="positive_comment_count" property="positiveCommentCount" />
+    </resultMap>
+
     <sql id="ListItemQueryFields">
-        id, name, pinyin, logo, description,
+        <if test="true">
+            id, name, pinyin, logo, description,
             keywords, sort, sales, product_count, comment_count,
             positive_comment_count, enable
+        </if>
     </sql>
 
     <resultMap id="ListItemResultMap" type="cn.tedu.csmall.server.pojo.vo.BrandListItemVO">
@@ -131,27 +171,4 @@
         <result column="positive_comment_count" property="positiveCommentCount" />
     </resultMap>
 
-    <select id="listPage" resultMap="ListItemResultMap">
-        select
-            <include refid="ListItemQueryFields" />
-        from
-            pms_brand
-        order by id
-        limit ${offset},${count}
-    </select>
-
-
-    <select id="getByName" resultMap="DetailResultMap">
-        select
-        <include refid="DetailQueryFields" />
-        from
-        pms_brand
-        where name=#{name}
-    </select>
-
-    <!-- int countByName(String name); -->
-    <select id="countByName" resultType="int">
-        SELECT count(*) FROM pms_brand where name=#{name}
-    </select>
-
- </mapper>
+</mapper>

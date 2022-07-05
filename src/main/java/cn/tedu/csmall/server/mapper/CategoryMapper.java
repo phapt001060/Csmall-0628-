@@ -1,62 +1,74 @@
 package cn.tedu.csmall.server.mapper;
 
 import cn.tedu.csmall.server.pojo.entity.Category;
-import cn.tedu.csmall.server.pojo.vo.BrandDetailVo;
-import cn.tedu.csmall.server.pojo.vo.BrandListItemVO;
 import cn.tedu.csmall.server.pojo.vo.CategoryDetailVO;
 import cn.tedu.csmall.server.pojo.vo.CategoryListItemVO;
-import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
-import java.io.Serializable;
 import java.util.List;
 
+/**
+ * 类别Mapper接口
+ *
+ * @author java@tedu.cn
+ * @version 0.0.1
+ */
+@Repository
 public interface CategoryMapper {
+
     /**
+     * 新增类别
      *
-     * @param category
-     * @return
+     * @param category 新增的类别对象
+     * @return 受影响的行数
      */
     int insert(Category category);
 
     /**
-     * 根据品牌id,删除品牌数据
-     * @param id 期望删除的品牌数据的id
-     * @return 受影响的行数,当删除成功时返回1,如果没有此id返回0
+     * 根据id删除类别
+     *
+     * @param id 被删除的类别的id
+     * @return 受影响的行数
      */
     int deleteById(Long id);
 
     /**
-     * 根据id修改品牌的名称
-     * @param id
-     * @param name
-     * @return
-     */
-    int updateNameById(@Param("id") Long id, @Param("name") String name);
-
-    /**
-     * 根据若干个品牌id，批量删除品牌数据
-     * @param ids 期望删除的若干个品牌数据的id
+     * 根据若干个类别id，批量删除类别数据
+     *
+     * @param ids 期望删除的若干个类别数据的id
      * @return 受影响的行数，将返回成功删除的数据量
      */
     int deleteByIds(Long... ids);
 
     /**
+     * 统计类别的数量
      *
-     * @return
+     * @return 类别的数量
      */
     int count();
 
     /**
+     * 根据类别名称统计此名称对应的类别数据的数量
      *
-     * @param id
-     * @return
+     * @param name 类别名称
+     * @return 此名称对应的类别数据的数量
+     */
+    int countByName(String name);
+
+    /**
+     * 根据id查询类别详情
+     *
+     * @param id 类别的id
+     * @return 匹配的类别详情，如果没有匹配的数据，则返回null
      */
     CategoryDetailVO getById(Long id);
 
-
     /**
-     * 查询品牌列表
-     * @return 品牌列表的集合
+     * 根据父级类别的id查询类别列表
+     *
+     * @param parentId 父级类别的id
+     * @return 类别列表
      */
-    List<CategoryListItemVO> list();
+    List<CategoryListItemVO> listByParentId(Long parentId);
+
 }

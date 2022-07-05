@@ -1,13 +1,18 @@
 package cn.tedu.csmall.server.controller;
 
+import cn.tedu.csmall.server.pojo.dto.CategoryAddNewDTO;
 import cn.tedu.csmall.server.service.ICategoryService;
+import com.github.xiaoymin.knife4j.annotations.ApiOperationSupport;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+// ====================================================
+// 以下部分是笔记
 // ====================================================
 // 需要被Spring创建对象的类型，必须：
 // 1. 添加组件注解
@@ -19,9 +24,15 @@ import org.springframework.web.bind.annotation.RestController;
 //      组件扫描的包都是指的“根包”，组件类放在此根包下的各层级子孙包中也都是有效的
 // ====================================================
 
-@RestController
-@Api(tags = "5.类别管理模块")
+/**
+ * 类别控制器
+ *
+ * @author java@tedu.cn
+ * @version 0.0.1
+ */
 @Slf4j
+@Api(tags = "2. 类别管理模块")
+@RestController
 @RequestMapping("categories")
 public class CategoryController {
 
@@ -29,28 +40,35 @@ public class CategoryController {
     private ICategoryService categoryService;
 
     public CategoryController() {
-        System.out.println("CategoryController的构造方法已经执行");
+        log.debug("创建控制器对象：CategoryController");
     }
 
-    // 请求路径为 add-new，要求响应“已经处理增加类别的请求”这段文字
+    // 请求路径为 add-new，要求响应“已经处理创建类别的请求”这段文字
     // http://localhost:8080/categories/add-new
+    @ApiOperation("创建类别")
+    @ApiOperationSupport(order = 100)
     @PostMapping(value = "/add-new")
-    public String addNew() {
-        System.out.println("CategoryController.addNew()");
-        return "已经处理增加类别的请求";
+    public String addNew(CategoryAddNewDTO categoryAddNewDTO) {
+        log.debug("接收到的请求参数：{}", categoryAddNewDTO);
+        categoryService.addNew(categoryAddNewDTO);
+        return "OK";
     }
 
     // 假设接下来是“删除类别”的处理
     // http://localhost:8080/categories/delete
+    @ApiOperation("删除类别")
+    @ApiOperationSupport(order = 200)
     @PostMapping("/delete")
     public String delete() {
-        System.out.println("CategoryController.delete()");
+        log.debug("CategoryController.delete()");
         return "del";
     }
 
     @PostMapping("/update-by-id")
-    public String xx() {
-        System.out.println("CategoryController.xx()");
+    @ApiOperation("修改类别")
+    @ApiOperationSupport(order = 300)
+    public String update() {
+        log.debug("CategoryController.xx()");
         return "即将根据id修改类别信息（尚未完成）";
     }
 

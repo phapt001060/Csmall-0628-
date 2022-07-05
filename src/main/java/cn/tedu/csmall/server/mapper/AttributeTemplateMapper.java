@@ -1,57 +1,39 @@
 package cn.tedu.csmall.server.mapper;
+
 import cn.tedu.csmall.server.pojo.entity.AttributeTemplate;
-import cn.tedu.csmall.server.pojo.vo.*;
-import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
+/**
+ * 属性模板Mapper接口
+ *
+ * @author java@tedu.cn
+ * @version 0.0.1
+ */
+@Repository
 public interface AttributeTemplateMapper {
+
     /**
+     * 新增属性模板
      *
-     * @param attributeTemplate
-     * @return
+     * @param attributeTemplate 新增的属性模板对象
+     * @return 受影响的行数
      */
-    int insertAttributeTemplate(AttributeTemplate attributeTemplate);
-
+    int insert(AttributeTemplate attributeTemplate);
 
     /**
-     * 根据品牌id,删除品牌数据
-     * @param id 期望删除的品牌数据的id
-     * @return 受影响的行数,当删除成功时返回1,如果没有此id返回0
+     * 根据id删除属性模板
+     *
+     * @param id 被删除的属性模板的id
+     * @return 受影响的行数
      */
     int deleteById(Long id);
 
     /**
-     * 根据id修改品牌的名称
-     * @param id
-     * @param name
-     * @return
-     */
-    int updateNameById(@Param("id") Long id, @Param("name") String name);
-
-    /**
-     * 根据若干个品牌id，批量删除品牌数据
-     * @param ids 期望删除的若干个品牌数据的id
+     * 根据若干个属性模板id，批量删除属性模板数据
+     *
+     * @param ids 期望删除的若干个属性模板数据的id
      * @return 受影响的行数，将返回成功删除的数据量
      */
     int deleteByIds(Long... ids);
 
-    /**
-     *
-     * @return
-     */
-    int count();
-
-    /**
-     *
-     * @param id
-     * @return
-     */
-    AttributeTemplateDetailVO getById(Long id);
-
-    /**
-     * 查询品牌列表
-     * @return 品牌列表的集合
-     */
-    List<AttributeTemplateListItemVO> list();
 }

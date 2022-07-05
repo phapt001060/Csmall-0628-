@@ -3,69 +3,71 @@ package cn.tedu.csmall.server.mapper;
 import cn.tedu.csmall.server.pojo.entity.Album;
 import cn.tedu.csmall.server.pojo.vo.AlbumDetailVO;
 import cn.tedu.csmall.server.pojo.vo.AlbumListItemVO;
-import cn.tedu.csmall.server.pojo.vo.BrandDetailVo;
-import cn.tedu.csmall.server.pojo.vo.BrandListItemVO;
-import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
-import java.lang.annotation.Retention;
 import java.util.List;
 
-
+/**
+ * 相册Mapper接口
+ *
+ * @author java@tedu.cn
+ * @version 0.0.1
+ */
+@Repository
 public interface AlbumMapper {
-    /**
-     *
-     * @param album
-     * @return
-     */
-    int insert (Album album);
 
     /**
-     * 根据品牌id,删除品牌数据
-     * @param id 期望删除的品牌数据的id
-     * @return 受影响的行数,当删除成功时返回1,如果没有此id返回0
+     * 新增相册
+     *
+     * @param album 新增的相册对象
+     * @return 受影响的行数
+     */
+    int insert(Album album);
+
+    /**
+     * 根据id删除相册
+     *
+     * @param id 被删除的相册的id
+     * @return 受影响的行数
      */
     int deleteById(Long id);
 
     /**
-     * 根据id修改品牌的名称
-     * @param id
-     * @param name
-     * @return
-     */
-    int updateNameById(@Param("id") Long id,@Param("name") String name);
-
-    /**
-     * 根据若干个品牌id，批量删除品牌数据
-     * @param ids 期望删除的若干个品牌数据的id
+     * 根据若干个相册id，批量删除相册数据
+     *
+     * @param ids 期望删除的若干个相册数据的id
      * @return 受影响的行数，将返回成功删除的数据量
      */
     int deleteByIds(Long... ids);
 
     /**
+     * 统计相册的数量
      *
-     * @return
+     * @return 相册的数量
      */
     int count();
 
     /**
+     * 根据相册名称统计此名称对应的相册数据的数量
      *
-     * @param id
-     * @return
+     * @param name 相册名称
+     * @return 此名称对应的相册数据的数量
+     */
+    int countByName(String name);
+
+    /**
+     * 根据id查询相册详情
+     *
+     * @param id 相册的id
+     * @return 匹配的相册详情，如果没有匹配的数据，则返回null
      */
     AlbumDetailVO getById(Long id);
 
     /**
-     * 查询品牌列表
-     * @return 品牌列表的集合
+     * 查询相册列表
+     *
+     * @return 相册列表
      */
     List<AlbumListItemVO> list();
-
-    /**
-     *
-     * @param name
-     * @return
-     */
-    int countByName(String name);
-
 
 }

@@ -3,7 +3,6 @@ package cn.tedu.csmall.server.pojo.vo;
 import lombok.Data;
 
 import java.io.Serializable;
-import java.util.Objects;
 
 /**
  * 品牌列表项VO

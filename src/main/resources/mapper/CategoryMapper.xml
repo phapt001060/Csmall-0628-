@@ -1,84 +1,98 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="cn.tedu.csmall.server.mapper.CategoryMapper">
 
     <!-- int insert(Category category); -->
     <insert id="insert" useGeneratedKeys="true" keyProperty="id">
-        insert into pms_category (
-            name,depth,keywords,sort,icon,
-            enable,is_parent,is_display,gmt_create,gmt_modified
-        ) values (
-            #{name},#{depth},#{keywords},#{sort},#{icon},
-            #{enable},#{isParent},#{isDisplay},#{gmtCreate},#{gmtModified}
-                 )
+        INSERT INTO pms_category (
+            name, parent_id, depth, keywords, sort,
+            icon, enable, is_parent, is_display
+        ) VALUES (
+            #{name}, #{parentId}, #{depth}, #{keywords}, #{sort},
+            #{icon}, #{enable}, #{isParent}, #{isDisplay}
+        )
     </insert>
 
-
-    <!--int deleteById(Long id);-->
+    <!-- int deleteById(Long id); -->
     <delete id="deleteById">
-        delete from pms_category where id=#{id}
+        DELETE
+        FROM
+            pms_category
+        WHERE
+            id = #{id}
     </delete>
-
-    <update id="updateNameById">
-        update pms_category set name= #{name} where id=#{id}
-    </update>
 
     <!-- int deleteByIds(Long... ids); -->
     <delete id="deleteByIds">
-        delete from pms_category where id in (
-        <foreach collection="array" item="id" separator=",">
-            #{id}
-        </foreach>
-        )
+        DELETE
+        FROM
+            pms_category
+        WHERE
+            id IN (
+                <foreach collection="array" item="id" separator=",">
+                    #{id}
+                </foreach>
+            )
     </delete>
 
+    <!-- int count() -->
     <select id="count" resultType="int">
-        select count(*) from pms_category
+        SELECT count(*) FROM pms_category
     </select>
 
+    <!-- int countByName(String name); -->
+    <select id="countByName" resultType="int">
+        SELECT count(*) FROM pms_category WHERE name=#{name}
+    </select>
 
-
-
+    <!-- CategoryDetailVO getById(Long id); -->
     <select id="getById" resultMap="DetailResultMap">
-        select
-        <include refid="DetailQueryFields" />
-        from
-        pms_category
-        where
-        id=#{id}
+        SELECT
+            <include refid="DetailQueryFields" />
+        FROM
+            pms_category
+        WHERE
+            id=#{id}
+    </select>
+
+    <!-- List<CategoryListItemVO> listByParentId(Long parentId); -->
+    <select id="listByParentId" resultMap="ListItemResultMap">
+        SELECT
+            <include refid="ListItemQueryFields" />
+        FROM
+            pms_category
+        WHERE
+            parent_id=#{parentId}
+        ORDER BY id
     </select>
 
     <sql id="DetailQueryFields">
-        id, name, parent_id, depth,keywords, sort,icon,enable,is_parent,is_display
-    </sql>
-
-    <resultMap id="DetailResultMap" type="cn.tedu.csmall.server.pojo.vo.CategoryDetailVO">
-        <result column="parent_id" property="parent_Id" />
-        <result column="is_parent" property="isParent" />
-        <result column="is_display" property="isDisplay" />
-    </resultMap>
-
-    <select id="list" resultMap="ListCategory">
-        select
-        <include refid="ListItemQueryFields" />
-        from
-        pms_category
-        order by id
-    </select>
-
-    <sql id="ListItemQueryFields">
         <if test="true">
-             id, name, parent_id, depth,keywords, sort,icon,enable,is_parent,is_display
+            id, name, parent_id, depth, keywords,
+            sort, icon, enable, is_parent, is_display
         </if>
     </sql>
 
-    <resultMap id="ListCategory" type="cn.tedu.csmall.server.pojo.vo.CategoryListItemVO">
+    <resultMap id="DetailResultMap" type="cn.tedu.csmall.server.pojo.vo.CategoryDetailVO">
+        <id column="id" property="id" />
         <result column="parent_id" property="parentId" />
         <result column="is_parent" property="isParent" />
         <result column="is_display" property="isDisplay" />
     </resultMap>
 
+    <sql id="ListItemQueryFields">
+        <if test="true">
+            id, name, parent_id, depth, keywords,
+            sort, icon, enable, is_parent, is_display
+        </if>
+    </sql>
 
+    <resultMap id="ListItemResultMap" type="cn.tedu.csmall.server.pojo.vo.CategoryListItemVO">
+        <id column="id" property="id" />
+        <result column="parent_id" property="parentId" />
+        <result column="is_parent" property="isParent" />
+        <result column="is_display" property="isDisplay" />
+    </resultMap>
 
 </mapper>

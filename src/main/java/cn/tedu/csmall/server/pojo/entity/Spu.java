@@ -1,338 +1,173 @@
 package cn.tedu.csmall.server.pojo.entity;
 
+import lombok.Data;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.Objects;
 
+/**
+ * SPU（Standard Product Unit）
+ *
+ * @author java@tedu.cn
+ * @version 0.0.1
+ */
+@Data
 public class Spu implements Serializable {
+
+    /**
+     * 记录id
+     */
     private Long id;
+
+    /**
+     * SPU名称
+     */
     private String name;
+
+    /**
+     * SPU编号
+     */
     private String typeNumber;
+
+    /**
+     * 标题
+     */
     private String title;
+
+    /**
+     * 简介
+     */
     private String description;
+
+    /**
+     * 价格（显示在列表中）
+     */
     private BigDecimal listPrice;
+
+    /**
+     * 当前库存（冗余）
+     */
     private Integer stock;
+
+    /**
+     * 库存预警阈值（冗余）
+     */
     private Integer stockThreshold;
+
+    /**
+     * 计件单位
+     */
     private String unit;
+
+    /**
+     * 品牌id
+     */
     private Long brandId;
+
+    /**
+     * 品牌名称（冗余）
+     */
     private String brandName;
+
+    /**
+     * 类别id
+     */
     private Long categoryId;
+
+    /**
+     * 类别名称（冗余）
+     */
     private String categoryName;
+
+    /**
+     * 属性模板id
+     */
     private Long attributeTemplateId;
+
+    /**
+     * 相册id
+     */
     private Long albumId;
+
+    /**
+     * 组图URLs，使⽤JSON格式表示
+     */
     private String pictures;
+
+    /**
+     * 关键词列表，各关键词使⽤英⽂的逗号分隔
+     */
     private String keywords;
+
+    /**
+     * 标签列表，各标签使⽤英⽂的逗号分隔，原则上最多3个
+     */
     private String tags;
+
+    /**
+     * 销量（冗余）
+     */
     private Integer sales;
+
+    /**
+     * 买家评论数量总和（冗余）
+     */
     private Integer commentCount;
+
+    /**
+     * 买家好评数量总和（冗余）
+     */
     private Integer positiveCommentCount;
+
+    /**
+     * ⾃定义排序序号
+     */
     private Integer sort;
-    private Integer isDeleted;
-    private Integer isPublished;
-    private Integer isNewArrival;
-    private Integer isRecommend;
-    private Integer isChecked;
+
+    /**
+     * 是否标记为删除，1=已删除，0=未删除
+     */
+    private Integer deleted;
+
+    /**
+     * 是否上架（发布），1=已上架，0=未上架 （下架）
+     */
+    private Integer published;
+
+    /**
+     * 是否新品，1=新品，0=非新品
+     */
+    private Integer newArrival;
+
+    /**
+     * 是否推荐，1=推荐，0=不推荐
+     */
+    private Integer recommend;
+
+    /**
+     * 是否已审核，1=已审核，0=未审核
+     */
+    private Integer checked;
+
+    /**
+     * 审核⼈（冗余）
+     */
     private String checkUser;
+
+    /**
+     * 审核通过时间（冗余）
+     */
     private LocalDateTime gmtCheck;
+
+    /**
+     * 数据创建时间
+     */
     private LocalDateTime gmtCreate;
+
+    /**
+     * 数据最后修改时间
+     */
     private LocalDateTime gmtModified;
 
-    @Override
-    public String toString() {
-        return "Spu{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", typeNumber='" + typeNumber + '\'' +
-                ", title='" + title + '\'' +
-                ", description='" + description + '\'' +
-                ", listPrice=" + listPrice +
-                ", stock=" + stock +
-                ", stockThreshold=" + stockThreshold +
-                ", unit='" + unit + '\'' +
-                ", brandId=" + brandId +
-                ", brandName='" + brandName + '\'' +
-                ", categoryId=" + categoryId +
-                ", categoryName='" + categoryName + '\'' +
-                ", attributeTemplateId=" + attributeTemplateId +
-                ", albumId=" + albumId +
-                ", pictures='" + pictures + '\'' +
-                ", keywords='" + keywords + '\'' +
-                ", tags='" + tags + '\'' +
-                ", sales=" + sales +
-                ", commentCount=" + commentCount +
-                ", positiveCommentCount=" + positiveCommentCount +
-                ", sort=" + sort +
-                ", isDeleted=" + isDeleted +
-                ", isPublished=" + isPublished +
-                ", isNewArrival=" + isNewArrival +
-                ", isRecommend=" + isRecommend +
-                ", isChecked=" + isChecked +
-                ", checkUser='" + checkUser + '\'' +
-                ", gmtCheck=" + gmtCheck +
-                ", gmtCreate=" + gmtCreate +
-                ", gmtModified=" + gmtModified +
-                '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Spu spu = (Spu) o;
-        return Objects.equals(id, spu.id) && Objects.equals(name, spu.name) && Objects.equals(typeNumber, spu.typeNumber) && Objects.equals(title, spu.title) && Objects.equals(description, spu.description) && Objects.equals(listPrice, spu.listPrice) && Objects.equals(stock, spu.stock) && Objects.equals(stockThreshold, spu.stockThreshold) && Objects.equals(unit, spu.unit) && Objects.equals(brandId, spu.brandId) && Objects.equals(brandName, spu.brandName) && Objects.equals(categoryId, spu.categoryId) && Objects.equals(categoryName, spu.categoryName) && Objects.equals(attributeTemplateId, spu.attributeTemplateId) && Objects.equals(albumId, spu.albumId) && Objects.equals(pictures, spu.pictures) && Objects.equals(keywords, spu.keywords) && Objects.equals(tags, spu.tags) && Objects.equals(sales, spu.sales) && Objects.equals(commentCount, spu.commentCount) && Objects.equals(positiveCommentCount, spu.positiveCommentCount) && Objects.equals(sort, spu.sort) && Objects.equals(isDeleted, spu.isDeleted) && Objects.equals(isPublished, spu.isPublished) && Objects.equals(isNewArrival, spu.isNewArrival) && Objects.equals(isRecommend, spu.isRecommend) && Objects.equals(isChecked, spu.isChecked) && Objects.equals(checkUser, spu.checkUser) && Objects.equals(gmtCheck, spu.gmtCheck) && Objects.equals(gmtCreate, spu.gmtCreate) && Objects.equals(gmtModified, spu.gmtModified);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, typeNumber, title, description, listPrice, stock, stockThreshold, unit, brandId, brandName, categoryId, categoryName, attributeTemplateId, albumId, pictures, keywords, tags, sales, commentCount, positiveCommentCount, sort, isDeleted, isPublished, isNewArrival, isRecommend, isChecked, checkUser, gmtCheck, gmtCreate, gmtModified);
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getTypeNumber() {
-        return typeNumber;
-    }
-
-    public void setTypeNumber(String typeNumber) {
-        this.typeNumber = typeNumber;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public BigDecimal getListPrice() {
-        return listPrice;
-    }
-
-    public void setListPrice(BigDecimal listPrice) {
-        this.listPrice = listPrice;
-    }
-
-    public Integer getStock() {
-        return stock;
-    }
-
-    public void setStock(Integer stock) {
-        this.stock = stock;
-    }
-
-    public Integer getStockThreshold() {
-        return stockThreshold;
-    }
-
-    public void setStockThreshold(Integer stockThreshold) {
-        this.stockThreshold = stockThreshold;
-    }
-
-    public String getUnit() {
-        return unit;
-    }
-
-    public void setUnit(String unit) {
-        this.unit = unit;
-    }
-
-    public Long getBrandId() {
-        return brandId;
-    }
-
-    public void setBrandId(Long brandId) {
-        this.brandId = brandId;
-    }
-
-    public String getBrandName() {
-        return brandName;
-    }
-
-    public void setBrandName(String brandName) {
-        this.brandName = brandName;
-    }
-
-    public Long getCategoryId() {
-        return categoryId;
-    }
-
-    public void setCategoryId(Long categoryId) {
-        this.categoryId = categoryId;
-    }
-
-    public String getCategoryName() {
-        return categoryName;
-    }
-
-    public void setCategoryName(String categoryName) {
-        this.categoryName = categoryName;
-    }
-
-    public Long getAttributeTemplateId() {
-        return attributeTemplateId;
-    }
-
-    public void setAttributeTemplateId(Long attributeTemplateId) {
-        this.attributeTemplateId = attributeTemplateId;
-    }
-
-    public Long getAlbumId() {
-        return albumId;
-    }
-
-    public void setAlbumId(Long albumId) {
-        this.albumId = albumId;
-    }
-
-    public String getPictures() {
-        return pictures;
-    }
-
-    public void setPictures(String pictures) {
-        this.pictures = pictures;
-    }
-
-    public String getKeywords() {
-        return keywords;
-    }
-
-    public void setKeywords(String keywords) {
-        this.keywords = keywords;
-    }
-
-    public String getTags() {
-        return tags;
-    }
-
-    public void setTags(String tags) {
-        this.tags = tags;
-    }
-
-    public Integer getSales() {
-        return sales;
-    }
-
-    public void setSales(Integer sales) {
-        this.sales = sales;
-    }
-
-    public Integer getCommentCount() {
-        return commentCount;
-    }
-
-    public void setCommentCount(Integer commentCount) {
-        this.commentCount = commentCount;
-    }
-
-    public Integer getPositiveCommentCount() {
-        return positiveCommentCount;
-    }
-
-    public void setPositiveCommentCount(Integer positiveCommentCount) {
-        this.positiveCommentCount = positiveCommentCount;
-    }
-
-    public Integer getSort() {
-        return sort;
-    }
-
-    public void setSort(Integer sort) {
-        this.sort = sort;
-    }
-
-    public Integer getIsDeleted() {
-        return isDeleted;
-    }
-
-    public void setIsDeleted(Integer isDeleted) {
-        this.isDeleted = isDeleted;
-    }
-
-    public Integer getIsPublished() {
-        return isPublished;
-    }
-
-    public void setIsPublished(Integer isPublished) {
-        this.isPublished = isPublished;
-    }
-
-    public Integer getIsNewArrival() {
-        return isNewArrival;
-    }
-
-    public void setIsNewArrival(Integer isNewArrival) {
-        this.isNewArrival = isNewArrival;
-    }
-
-    public Integer getIsRecommend() {
-        return isRecommend;
-    }
-
-    public void setIsRecommend(Integer isRecommend) {
-        this.isRecommend = isRecommend;
-    }
-
-    public Integer getIsChecked() {
-        return isChecked;
-    }
-
-    public void setIsChecked(Integer isChecked) {
-        this.isChecked = isChecked;
-    }
-
-    public String getCheckUser() {
-        return checkUser;
-    }
-
-    public void setCheckUser(String checkUser) {
-        this.checkUser = checkUser;
-    }
-
-    public LocalDateTime getGmtCheck() {
-        return gmtCheck;
-    }
-
-    public void setGmtCheck(LocalDateTime gmtCheck) {
-        this.gmtCheck = gmtCheck;
-    }
-
-    public LocalDateTime getGmtCreate() {
-        return gmtCreate;
-    }
-
-    public void setGmtCreate(LocalDateTime gmtCreate) {
-        this.gmtCreate = gmtCreate;
-    }
-
-    public LocalDateTime getGmtModified() {
-        return gmtModified;
-    }
-
-    public void setGmtModified(LocalDateTime gmtModified) {
-        this.gmtModified = gmtModified;
-    }
 }

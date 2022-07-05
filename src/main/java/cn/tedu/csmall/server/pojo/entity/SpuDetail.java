@@ -1,79 +1,42 @@
 package cn.tedu.csmall.server.pojo.entity;
 
+import lombok.Data;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.Objects;
-import java.util.Properties;
 
-public class SpuDetail {
+/**
+ * SPU详情
+ *
+ * @author java@tedu.cn
+ * @version 0.0.1
+ */
+@Data
+public class SpuDetail implements Serializable {
+
+    /**
+     * 记录id
+     */
     private Long id;
+
+    /**
+     * SPU id
+     */
     private Long spuId;
+
+    /**
+     * SPU详情，应该使用HTML富文本，通常内容是若干张图片
+     */
     private String detail;
+
+    /**
+     * 数据创建时间
+     */
     private LocalDateTime gmtCreate;
+
+    /**
+     * 数据最后修改时间
+     */
     private LocalDateTime gmtModified;
 
-
-    @Override
-    public String toString() {
-        return "SpuDetail{" +
-                "id=" + id +
-                ", spuId=" + spuId +
-                ", detail='" + detail + '\'' +
-                ", gmtCreate=" + gmtCreate +
-                ", gmtModified=" + gmtModified +
-                '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        SpuDetail spuDetail = (SpuDetail) o;
-        return Objects.equals(id, spuDetail.id) && Objects.equals(spuId, spuDetail.spuId) && Objects.equals(detail, spuDetail.detail) && Objects.equals(gmtCreate, spuDetail.gmtCreate) && Objects.equals(gmtModified, spuDetail.gmtModified);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, spuId, detail, gmtCreate, gmtModified);
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getSpuId() {
-        return spuId;
-    }
-
-    public void setSpuId(Long spuId) {
-        this.spuId = spuId;
-    }
-
-    public String getDetail() {
-        return detail;
-    }
-
-    public void setDetail(String detail) {
-        this.detail = detail;
-    }
-
-    public LocalDateTime getGmtCreate() {
-        return gmtCreate;
-    }
-
-    public void setGmtCreate(LocalDateTime gmtCreate) {
-        this.gmtCreate = gmtCreate;
-    }
-
-    public LocalDateTime getGmtModified() {
-        return gmtModified;
-    }
-
-    public void setGmtModified(LocalDateTime gmtModified) {
-        this.gmtModified = gmtModified;
-    }
 }

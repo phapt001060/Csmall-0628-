@@ -1,147 +1,77 @@
 package cn.tedu.csmall.server.pojo.entity;
 
+import lombok.Data;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.Objects;
 
+/**
+ * 属性
+ *
+ * @author java@tedu.cn
+ * @version 0.0.1
+ */
+@Data
 public class Attribute implements Serializable {
+
+    /**
+     * 记录id
+     */
     private Long id;
+
+    /**
+     * 所属属性模板id
+     */
     private Long templateId;
+
+    /**
+     * 属性名称
+     */
     private String name;
+
+    /**
+     * 简介（某些属性名称可能相同，通过简介补充描述）
+     */
     private String description;
+
+    /**
+     * 属性类型，1=销售属性，0=非销售属性
+     */
     private Integer type;
+
+    /**
+     * 输入类型，0=手动录入，1=单选，2=多选， 3=单选（下拉列表），4=多选（下拉列表）
+     */
     private Integer inputType;
-    private Integer valueList;
-    private Integer unit;
+
+    /**
+     * 备选值列表
+     */
+    private String valueList;
+
+    /**
+     * 计量单位
+     */
+    private String unit;
+
+    /**
+     * 自定义排序序号
+     */
     private Integer sort;
-    private Integer isAllowCustomize;
+
+    /**
+     * 是否允许自定义，1=允许，0=禁止
+     */
+    private Integer allowCustomize;
+
+    /**
+     * 数据创建时间
+     */
     private LocalDateTime gmtCreate;
+
+    /**
+     * 数据最后修改时间
+     */
     private LocalDateTime gmtModified;
 
-    @Override
-    public String toString() {
-        return "Attribute{" +
-                "id=" + id +
-                ", templateId=" + templateId +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", type=" + type +
-                ", inputType=" + inputType +
-                ", valueList=" + valueList +
-                ", unit=" + unit +
-                ", sort=" + sort +
-                ", isAllowCustomize=" + isAllowCustomize +
-                ", gmtCreate=" + gmtCreate +
-                ", gmtModified=" + gmtModified +
-                '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Attribute attribute = (Attribute) o;
-        return Objects.equals(id, attribute.id) && Objects.equals(templateId, attribute.templateId) && Objects.equals(name, attribute.name) && Objects.equals(description, attribute.description) && Objects.equals(type, attribute.type) && Objects.equals(inputType, attribute.inputType) && Objects.equals(valueList, attribute.valueList) && Objects.equals(unit, attribute.unit) && Objects.equals(sort, attribute.sort) && Objects.equals(isAllowCustomize, attribute.isAllowCustomize) && Objects.equals(gmtCreate, attribute.gmtCreate) && Objects.equals(gmtModified, attribute.gmtModified);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, templateId, name, description, type, inputType, valueList, unit, sort, isAllowCustomize, gmtCreate, gmtModified);
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getTemplateId() {
-        return templateId;
-    }
-
-    public void setTemplateId(Long templateId) {
-        this.templateId = templateId;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Integer getType() {
-        return type;
-    }
-
-    public void setType(Integer type) {
-        this.type = type;
-    }
-
-    public Integer getInputType() {
-        return inputType;
-    }
-
-    public void setInputType(Integer inputType) {
-        this.inputType = inputType;
-    }
-
-    public Integer getValueList() {
-        return valueList;
-    }
-
-    public void setValueList(Integer valueList) {
-        this.valueList = valueList;
-    }
-
-    public Integer getUnit() {
-        return unit;
-    }
-
-    public void setUnit(Integer unit) {
-        this.unit = unit;
-    }
-
-    public Integer getSort() {
-        return sort;
-    }
-
-    public void setSort(Integer sort) {
-        this.sort = sort;
-    }
-
-    public Integer getIsAllowCustomize() {
-        return isAllowCustomize;
-    }
-
-    public void setIsAllowCustomize(Integer isAllowCustomize) {
-        this.isAllowCustomize = isAllowCustomize;
-    }
-
-    public LocalDateTime getGmtCreate() {
-        return gmtCreate;
-    }
-
-    public void setGmtCreate(LocalDateTime gmtCreate) {
-        this.gmtCreate = gmtCreate;
-    }
-
-    public LocalDateTime getGmtModified() {
-        return gmtModified;
-    }
-
-    public void setGmtModified(LocalDateTime gmtModified) {
-        this.gmtModified = gmtModified;
-    }
 }
