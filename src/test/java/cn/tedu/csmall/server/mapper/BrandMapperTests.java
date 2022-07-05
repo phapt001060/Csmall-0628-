@@ -106,4 +106,12 @@ public class BrandMapperTests {
         BrandDetailVo brandDetailVo = mapper.getByName(name);
         log.info("根据名字= {}查询完成,结果 {}",name,brandDetailVo);
     }
+
+
+    @Test
+    public void testCountByName() {
+        String name = "香蕉";
+        int count = mapper.countByName(name);
+        log.debug("根据名称（{}）统计品牌数量完成，统计结果={}", name, count);
+    }
 }

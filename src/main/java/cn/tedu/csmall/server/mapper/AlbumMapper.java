@@ -60,5 +60,12 @@ public interface AlbumMapper {
      */
     List<AlbumListItemVO> list();
 
+    /**
+     *
+     * @param name
+     * @return
+     */
+    int countByName(String name);
+
 
 }

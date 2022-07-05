@@ -8,7 +8,7 @@
         insert into pms_album (
             name, description,sort,gmt_create, gmt_modified
         ) values (
-            #{name}, #{description},#{sort},#{gmtCreate}, #{gmtCodified}
+            #{name}, #{description},#{sort},#{gmtCreate}, #{gmtModified}
                  )
     </insert>
 
@@ -64,5 +64,8 @@
         id,name,description,sort
     </sql>
 
-
+    <!-- int countByName(String name); -->
+    <select id="countByName" resultType="int">
+        SELECT count(*) FROM pms_alubm where name=#{name}
+    </select>
 </mapper>

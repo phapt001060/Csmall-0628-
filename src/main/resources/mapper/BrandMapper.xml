@@ -149,5 +149,9 @@
         where name=#{name}
     </select>
 
+    <!-- int countByName(String name); -->
+    <select id="countByName" resultType="int">
+        SELECT count(*) FROM pms_brand where name=#{name}
+    </select>
 
  </mapper>

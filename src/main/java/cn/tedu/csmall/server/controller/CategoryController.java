@@ -1,7 +1,10 @@
 package cn.tedu.csmall.server.controller;
 
 import cn.tedu.csmall.server.service.ICategoryService;
+import io.swagger.annotations.Api;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,6 +20,8 @@ import org.springframework.web.bind.annotation.RestController;
 // ====================================================
 
 @RestController
+@Api(tags = "5.类别管理模块")
+@Slf4j
 @RequestMapping("categories")
 public class CategoryController {
 
@@ -29,7 +34,7 @@ public class CategoryController {
 
     // 请求路径为 add-new，要求响应“已经处理增加类别的请求”这段文字
     // http://localhost:8080/categories/add-new
-    @RequestMapping(value = "/add-new")
+    @PostMapping(value = "/add-new")
     public String addNew() {
         System.out.println("CategoryController.addNew()");
         return "已经处理增加类别的请求";
@@ -37,13 +42,13 @@ public class CategoryController {
 
     // 假设接下来是“删除类别”的处理
     // http://localhost:8080/categories/delete
-    @RequestMapping("/delete")
+    @PostMapping("/delete")
     public String delete() {
         System.out.println("CategoryController.delete()");
         return "del";
     }
 
-    @RequestMapping("/update-by-id")
+    @PostMapping("/update-by-id")
     public String xx() {
         System.out.println("CategoryController.xx()");
         return "即将根据id修改类别信息（尚未完成）";

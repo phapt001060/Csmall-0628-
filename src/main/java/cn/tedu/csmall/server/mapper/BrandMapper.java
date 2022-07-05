@@ -84,4 +84,11 @@ public interface BrandMapper {
      * @return
      */
     BrandDetailVo getByName(String name);
+
+    /**
+     *
+     * @param name
+     * @return
+     */
+    int countByName(String name);
 }
