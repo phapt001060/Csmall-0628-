@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.tedu.csmall.server.mapper.AlbumMapper">
+
+    <!-- int insert(Album album); -->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO pms_album (
+            name, description, sort
+        ) VALUES (
+            #{name}, #{description}, #{sort}
+        )
+    </insert>
+
+    <!-- int deleteById(Long id); -->
+    <delete id="deleteById">
+        DELETE
+        FROM
+            pms_album
+        WHERE
+            id = #{id}
+    </delete>
+
+    <!-- int deleteByIds(Long... ids); -->
+    <delete id="deleteByIds">
+        DELETE
+        FROM
+            pms_album
+        WHERE
+            id IN (
+                <foreach collection="array" item="id" separator=",">
+                    #{id}
+                </foreach>
+            )
+    </delete>
+
+    <!-- int count() -->
+    <select id="count" resultType="int">
+        SELECT count(*) FROM pms_album
+    </select>
+
+    <!-- int countByName(String name); -->
+    <select id="countByName" resultType="int">
+        SELECT count(*) FROM pms_album WHERE name=#{name}
+    </select>
+
+    <!-- AlbumDetailVO getById(Long id); -->
+    <select id="getById" resultMap="DetailResultMap">
+        SELECT
+            <include refid="DetailQueryFields" />
+        FROM
+            pms_album
+        WHERE
+            id=#{id}
+    </select>
+
+    <!-- List<AlbumListItemVO> list(); -->
+    <select id="list" resultMap="ListItemResultMap">
+        SELECT
+            <include refid="ListItemQueryFields" />
+        FROM
+            pms_album
+        ORDER BY id
+    </select>
+
+    <sql id="DetailQueryFields">
+        <if test="true">
+            id, name, description, sort
+        </if>
+    </sql>
+
+    <resultMap id="DetailResultMap" type="cn.tedu.csmall.server.pojo.vo.AlbumDetailVO">
+        <id column="id" property="id" />
+    </resultMap>
+
+    <sql id="ListItemQueryFields">
+        <if test="true">
+            id, name, description, sort
+        </if>
+    </sql>
+
+    <resultMap id="ListItemResultMap" type="cn.tedu.csmall.server.pojo.vo.AlbumListItemVO">
+        <id column="id" property="id" />
+    </resultMap>
+
+</mapper>
