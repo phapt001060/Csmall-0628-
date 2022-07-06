@@ -36,4 +36,12 @@ public interface AttributeTemplateMapper {
      */
     int deleteByIds(Long... ids);
 
+    /**
+     * 根据属性模板名称统计此名称对应的属性模板数据的数量
+     *
+     * @param name 属性模板名称
+     * @return 此名称对应的属性模板数据的数量
+     */
+    int countByName(String name);
+
 }

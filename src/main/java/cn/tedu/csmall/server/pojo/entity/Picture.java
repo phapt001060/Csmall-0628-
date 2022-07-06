@@ -32,7 +32,7 @@ public class Picture implements Serializable {
     /**
      * 是否为封面图片，1=是，0=否
      */
-    private Integer cover;
+    private Integer isCover;
 
     /**
      * 图片简介

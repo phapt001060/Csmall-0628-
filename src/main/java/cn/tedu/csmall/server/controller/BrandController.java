@@ -1,5 +1,6 @@
 package cn.tedu.csmall.server.controller;
 
+import cn.tedu.csmall.server.web.JsonResult;
 import cn.tedu.csmall.server.pojo.dto.BrandAddNewDTO;
 import cn.tedu.csmall.server.pojo.dto.BrandEditDTO;
 import cn.tedu.csmall.server.service.IBrandService;
@@ -36,10 +37,10 @@ public class BrandController {
     @ApiOperation("创建品牌")
     @ApiOperationSupport(order = 100)
     @PostMapping("/add-new")
-    public String addNew(BrandAddNewDTO brandAddNewDTO) {
+    public JsonResult addNew(BrandAddNewDTO brandAddNewDTO) {
         log.debug("接收到的请求参数：{}", brandAddNewDTO);
         brandService.addNew(brandAddNewDTO);
-        return "OK";
+        return JsonResult.ok();
     }
 
     // http://localhost:8080/brands/6937/edit?name=XiaoMi&pinyin=xiaomi&logo=xxx&categoryId=998&description=hahaha&keywords=mi&sort=66

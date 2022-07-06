@@ -9,7 +9,7 @@
             album_id, url, is_cover, description, width,
             height, sort
         ) values (
-            #{albumId}, #{url}, #{cover}, #{description}, #{width},
+            #{albumId}, #{url}, #{isCover}, #{description}, #{width},
             #{height}, #{sort}
         )
     </insert>

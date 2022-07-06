@@ -16,8 +16,8 @@
             #{id}, #{name}, #{typeNumber}, #{title}, #{description},
             #{listPrice}, #{stock}, #{stockThreshold}, #{unit}, #{brandId},
             #{brandName}, #{categoryId}, #{categoryName}, #{attributeTemplateId}, #{albumId},
-            #{pictures}, #{keywords}, #{tags}, #{sort}, #{deleted},
-            #{published}, #{newArrival}, #{recommend}, #{checked}, #{gmtCheck}
+            #{pictures}, #{keywords}, #{tags}, #{sort}, #{isDeleted},
+            #{isPublished}, #{isNewArrival}, #{isRecommend}, #{isChecked}, #{gmtCheck}
          )
     </insert>
 

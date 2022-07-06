@@ -2,6 +2,7 @@ package cn.tedu.csmall.server.controller;
 
 import cn.tedu.csmall.server.pojo.dto.AlbumAddNewDTO;
 import cn.tedu.csmall.server.service.IAlbumService;
+import cn.tedu.csmall.server.web.JsonResult;
 import com.github.xiaoymin.knife4j.annotations.ApiOperationSupport;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -34,10 +35,10 @@ public class AlbumController {
     @ApiOperation("创建相册")
     @ApiOperationSupport(order = 100)
     @PostMapping("/add-new")
-    public String addNew(AlbumAddNewDTO albumAddNewDTO) {
+    public JsonResult addNew(AlbumAddNewDTO albumAddNewDTO) {
         log.debug("接收到的请求参数：{}", albumAddNewDTO);
         albumService.addNew(albumAddNewDTO);
-        return "OK";
+        return JsonResult.ok();
     }
 
 }

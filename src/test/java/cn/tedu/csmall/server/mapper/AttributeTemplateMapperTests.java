@@ -37,4 +37,11 @@ public class AttributeTemplateMapperTests {
         log.debug("批量删除完成，受影响的行数={}", rows);
     }
 
+    @Test
+    public void testCountByName() {
+        String name = "小米15的属性模板";
+        int count = mapper.countByName(name);
+        log.debug("根据名称【{}】统计属性模板数量完成，统计结果={}", name, count);
+    }
+
 }

@@ -1,5 +1,6 @@
 package cn.tedu.csmall.server.service.impl;
 
+import cn.tedu.csmall.server.ex.ServiceException;
 import cn.tedu.csmall.server.mapper.AlbumMapper;
 import cn.tedu.csmall.server.pojo.dto.AlbumAddNewDTO;
 import cn.tedu.csmall.server.pojo.entity.Album;
@@ -7,6 +8,7 @@ import cn.tedu.csmall.server.pojo.entity.Brand;
 import cn.tedu.csmall.server.repo.IAlbumRepository;
 import cn.tedu.csmall.server.repo.impl.AlbumRepositoryImpl;
 import cn.tedu.csmall.server.service.IAlbumService;
+import cn.tedu.csmall.server.web.ServiceCode;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +43,7 @@ public class AlbumServiceImpl implements IAlbumService {
         if (count > 0) {
             String message = "创建相册失败，相册名称【" + name + "】已经被占用！";
             log.error(message);
-            throw new RuntimeException(message);
+            throw new ServiceException(ServiceCode.ERR_CONFLICT, message);
         }
 
         // 创建实体对象（Mapper的方法的参数是实体类型）
@@ -56,7 +58,12 @@ public class AlbumServiceImpl implements IAlbumService {
 
         // 将相册数据写入到数据库中
         log.debug("即将向表中写入数据：{}", album);
-        albumMapper.insert(album);
+        int rows = albumMapper.insert(album);
+        if (rows != 1) {
+            String message = "创建相册失败，服务器忙，请稍后再次尝试！";
+            log.error(message);
+            throw new ServiceException(ServiceCode.ERR_INSERT, message);
+        }
     }
 
 }

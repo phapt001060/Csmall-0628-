@@ -34,4 +34,9 @@
             )
     </delete>
 
+    <!-- int countByName(String name); -->
+    <select id="countByName" resultType="int">
+        SELECT count(*) FROM pms_attribute_template WHERE name=#{name}
+    </select>
+
 </mapper>

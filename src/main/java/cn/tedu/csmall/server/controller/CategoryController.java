@@ -2,6 +2,7 @@ package cn.tedu.csmall.server.controller;
 
 import cn.tedu.csmall.server.pojo.dto.CategoryAddNewDTO;
 import cn.tedu.csmall.server.service.ICategoryService;
+import cn.tedu.csmall.server.web.JsonResult;
 import com.github.xiaoymin.knife4j.annotations.ApiOperationSupport;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -48,10 +49,10 @@ public class CategoryController {
     @ApiOperation("创建类别")
     @ApiOperationSupport(order = 100)
     @PostMapping(value = "/add-new")
-    public String addNew(CategoryAddNewDTO categoryAddNewDTO) {
+    public JsonResult addNew(CategoryAddNewDTO categoryAddNewDTO) {
         log.debug("接收到的请求参数：{}", categoryAddNewDTO);
         categoryService.addNew(categoryAddNewDTO);
-        return "OK";
+        return JsonResult.ok();
     }
 
     // 假设接下来是“删除类别”的处理
@@ -61,13 +62,16 @@ public class CategoryController {
     @PostMapping("/delete")
     public String delete() {
         log.debug("CategoryController.delete()");
-        return "del";
+        throw new NullPointerException("尝试删除类别时出现NPE");
+        // return "del";
     }
 
     @PostMapping("/update-by-id")
     @ApiOperation("修改类别")
     @ApiOperationSupport(order = 300)
     public String update() {
+        int[] arr = new int[5];
+        System.out.println(arr[-1]);
         log.debug("CategoryController.xx()");
         return "即将根据id修改类别信息（尚未完成）";
     }

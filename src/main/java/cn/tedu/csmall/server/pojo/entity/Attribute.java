@@ -62,7 +62,7 @@ public class Attribute implements Serializable {
     /**
      * 是否允许自定义，1=允许，0=禁止
      */
-    private Integer allowCustomize;
+    private Integer isAllowCustomize;
 
     /**
      * 数据创建时间

@@ -128,27 +128,27 @@ public class Spu implements Serializable {
     /**
      * 是否标记为删除，1=已删除，0=未删除
      */
-    private Integer deleted;
+    private Integer isDeleted;
 
     /**
      * 是否上架（发布），1=已上架，0=未上架 （下架）
      */
-    private Integer published;
+    private Integer isPublished;
 
     /**
      * 是否新品，1=新品，0=非新品
      */
-    private Integer newArrival;
+    private Integer isNewArrival;
 
     /**
      * 是否推荐，1=推荐，0=不推荐
      */
-    private Integer recommend;
+    private Integer isRecommend;
 
     /**
      * 是否已审核，1=已审核，0=未审核
      */
-    private Integer checked;
+    private Integer isChecked;
 
     /**
      * 审核⼈（冗余）

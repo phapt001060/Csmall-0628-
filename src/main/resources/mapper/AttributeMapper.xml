@@ -10,7 +10,7 @@
             unit, sort, is_allow_customize, template_id
         ) VALUES (
             #{name}, #{description}, #{type}, #{inputType}, #{valueList},
-            #{unit}, #{sort}, #{allowCustomize}, #{templateId}
+            #{unit}, #{sort}, #{isAllowCustomize}, #{templateId}
         )
     </insert>
 
