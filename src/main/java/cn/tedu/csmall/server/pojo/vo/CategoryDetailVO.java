@@ -56,11 +56,12 @@ public class CategoryDetailVO implements Serializable {
     /**
      * 是否为父级（是否包含子级），1=是父级，0=不是父级
      */
-    private Integer parent;
+    private Integer isParent;
 
     /**
      * 是否显示在导航栏中，1=启用，0=未启用
      */
-    private Integer display;
+    private Integer isDisplay;
+
 
 }

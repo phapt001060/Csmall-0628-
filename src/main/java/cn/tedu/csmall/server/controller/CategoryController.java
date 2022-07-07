@@ -1,5 +1,6 @@
 package cn.tedu.csmall.server.controller;
 
+import cn.tedu.csmall.server.ex.ServiceException;
 import cn.tedu.csmall.server.pojo.dto.CategoryAddNewDTO;
 import cn.tedu.csmall.server.service.ICategoryService;
 import cn.tedu.csmall.server.web.JsonResult;
@@ -51,7 +52,7 @@ public class CategoryController {
     @PostMapping(value = "/add-new")
     public JsonResult addNew(CategoryAddNewDTO categoryAddNewDTO) {
         log.debug("接收到的请求参数：{}", categoryAddNewDTO);
-        categoryService.addNew(categoryAddNewDTO);
+            categoryService.addNew(categoryAddNewDTO);
         return JsonResult.ok();
     }
 

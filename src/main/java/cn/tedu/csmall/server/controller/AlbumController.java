@@ -1,5 +1,6 @@
 package cn.tedu.csmall.server.controller;
 
+import cn.tedu.csmall.server.ex.ServiceException;
 import cn.tedu.csmall.server.pojo.dto.AlbumAddNewDTO;
 import cn.tedu.csmall.server.service.IAlbumService;
 import cn.tedu.csmall.server.web.JsonResult;
@@ -11,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.xml.ws.Service;
 
 /**
  * 相册控制器
@@ -37,7 +40,7 @@ public class AlbumController {
     @PostMapping("/add-new")
     public JsonResult addNew(AlbumAddNewDTO albumAddNewDTO) {
         log.debug("接收到的请求参数：{}", albumAddNewDTO);
-        albumService.addNew(albumAddNewDTO);
+            albumService.addNew(albumAddNewDTO);
         return JsonResult.ok();
     }
 
